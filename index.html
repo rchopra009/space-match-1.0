@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SpaceMatch - India's First AI-Native Commercial Real Estate Platform</title>
+    <title>SpaceMatch - India's AI-Native Commercial Real Estate Platform</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
@@ -12,24 +12,55 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-dark: #0a0e1a;
+            --secondary-dark: #1a1f2e;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --success-green: #10b981;
+            --warning-orange: #f59e0b;
+            --danger-red: #ef4444;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --glass-bg: rgba(248, 250, 252, 0.03);
+            --glass-border: rgba(248, 250, 252, 0.08);
+            --card-bg: rgba(26, 31, 46, 0.8);
+            --input-bg: rgba(248, 250, 252, 0.05);
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #0f172a 50%, var(--secondary-dark) 100%);
+            color: var(--text-primary);
             min-height: 100vh;
             overflow-x: hidden;
         }
 
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.02;
+            z-index: -1;
+            background-image: 
+                linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
         .header {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(10, 14, 26, 0.95);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid var(--glass-border);
             padding: 1rem 2rem;
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
         .nav {
@@ -41,174 +72,299 @@
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 1.75rem;
             font-weight: 800;
-            color: #4f46e5;
+            color: var(--accent-purple);
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
         }
 
         .logo i {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 2rem;
+            color: var(--accent-cyan);
+            font-size: 1.5rem;
         }
 
-        .nav-links {
+        .nav-menu {
             display: flex;
             gap: 2rem;
             align-items: center;
         }
 
         .nav-link {
-            color: #374151;
+            color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s ease;
             padding: 0.5rem 1rem;
             border-radius: 0.5rem;
+            transition: all 0.3s ease;
         }
 
         .nav-link:hover {
-            color: #4f46e5;
-            background: rgba(79, 70, 229, 0.1);
-            transform: translateY(-2px);
+            color: var(--accent-purple);
+            background: var(--glass-bg);
         }
 
-        .login-btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
+        .nav-cta {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
             padding: 0.75rem 1.5rem;
-            border-radius: 0.75rem;
+            border-radius: 0.5rem;
             border: none;
-            cursor: pointer;
             font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            font-size: 0.9rem;
         }
 
-        .login-btn:hover {
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+            color: white;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+
+        .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--glass-border);
+        }
+
+        .btn-outline:hover {
+            background: var(--glass-bg);
+            border-color: var(--accent-purple);
         }
 
         .main-container {
             margin-top: 80px;
-            padding: 2rem;
-            max-width: 1400px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
-        .hero-section {
+        .hero {
+            padding: 4rem 2rem;
             text-align: center;
-            padding: 4rem 0;
-            color: white;
+            background: radial-gradient(circle at center, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+        }
+
+        .hero-badge {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--accent-cyan);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            display: inline-block;
         }
 
         .hero-title {
             font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #ffffff, #f8fafc);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-purple) 50%, var(--accent-cyan) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            line-height: 1.2;
+            line-height: 1.1;
         }
 
         .hero-subtitle {
             font-size: 1.25rem;
-            opacity: 0.9;
+            color: var(--text-secondary);
             margin-bottom: 3rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.6;
         }
 
-        .stats-grid {
+        .hero-stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
-            margin-bottom: 4rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
         }
 
         .stat-card {
-            background: rgba(255, 255, 255, 0.15);
+            background: var(--card-bg);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--glass-border);
             border-radius: 1rem;
-            padding: 2rem;
+            padding: 1.5rem;
             text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.2);
         }
 
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 800;
-            color: #fbbf24;
+            color: var(--accent-purple);
             display: block;
+            margin-bottom: 0.5rem;
         }
 
         .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .sidebar {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .user-profile {
+            text-align: center;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--glass-border);
+            margin-bottom: 1.5rem;
+        }
+
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
             color: white;
-            opacity: 0.9;
+            font-weight: 700;
+        }
+
+        .user-name {
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .user-role {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .agent-tier {
+            background: linear-gradient(135deg, var(--warning-orange), #fbbf24);
+            color: var(--primary-dark);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
             margin-top: 0.5rem;
+            display: inline-block;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-link:hover,
+        .sidebar-link.active {
+            background: var(--glass-bg);
+            color: var(--accent-purple);
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
         }
 
         .search-section {
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--card-bg);
             backdrop-filter: blur(20px);
-            border-radius: 2rem;
-            padding: 3rem;
-            margin: 3rem 0;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--glass-border);
+            border-radius: 1rem;
+            padding: 2rem;
         }
 
-        .search-title {
-            font-size: 2rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #1f2937;
-        }
-
-        .search-tabs {
+        .section-header {
             display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
         }
 
-        .search-tab {
-            padding: 0.75rem 1.5rem;
-            border: 2px solid #e5e7eb;
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 0.5rem;
+            background: var(--glass-bg);
+            padding: 0.25rem;
             border-radius: 0.75rem;
-            background: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-tab {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-weight: 500;
+            flex: 1;
+            text-align: center;
         }
 
-        .search-tab.active {
-            background: linear-gradient(45deg, #667eea, #764ba2);
+        .filter-tab.active {
+            background: var(--accent-purple);
             color: white;
-            border-color: transparent;
-            transform: scale(1.05);
+            box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
         }
 
         .search-form {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .form-group {
@@ -218,87 +374,101 @@
         .form-input {
             width: 100%;
             padding: 1rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 0.75rem;
+            background: var(--input-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 0.5rem;
+            color: var(--text-primary);
             font-size: 1rem;
             transition: all 0.3s ease;
-            background: white;
         }
 
         .form-input:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-secondary);
         }
 
         .search-btn {
             grid-column: span 2;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
             color: white;
-            padding: 1rem 2rem;
             border: none;
-            border-radius: 0.75rem;
-            font-size: 1.1rem;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
             font-weight: 600;
+            font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
 
         .search-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-        }
-
-        .properties-section {
-            margin: 4rem 0;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: white;
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
         }
 
         .properties-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 1.5rem;
         }
 
         .property-card {
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--card-bg);
             backdrop-filter: blur(20px);
-            border-radius: 1.5rem;
+            border: 1px solid var(--glass-border);
+            border-radius: 1rem;
             overflow: hidden;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             cursor: pointer;
         }
 
         .property-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent-purple);
         }
 
         .property-image {
             height: 200px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
             position: relative;
             overflow: hidden;
         }
 
-        .property-badge {
+        .property-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        }
+
+        .property-badges {
             position: absolute;
             top: 1rem;
             left: 1rem;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .property-badge {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
             font-weight: 600;
-            font-size: 0.875rem;
+            backdrop-filter: blur(10px);
         }
 
         .property-actions {
@@ -310,24 +480,39 @@
         }
 
         .action-btn {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(0, 0, 0, 0.7);
             border: none;
+            color: white;
             cursor: pointer;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
 
         .action-btn:hover {
-            background: white;
+            background: var(--accent-purple);
             transform: scale(1.1);
         }
 
-        .property-info {
+        .ai-score {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background: var(--success-green);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+        }
+
+        .property-content {
             padding: 1.5rem;
         }
 
@@ -335,11 +520,12 @@
             font-size: 1.25rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
-            color: #1f2937;
+            color: var(--text-primary);
         }
 
         .property-location {
-            color: #6b7280;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
@@ -349,7 +535,7 @@
         .property-details {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
+            gap: 0.75rem;
             margin-bottom: 1rem;
         }
 
@@ -358,104 +544,67 @@
             align-items: center;
             gap: 0.5rem;
             font-size: 0.875rem;
-            color: #6b7280;
+            color: var(--text-secondary);
+        }
+
+        .detail-icon {
+            color: var(--accent-purple);
+            width: 16px;
+            text-align: center;
         }
 
         .property-price {
             font-size: 1.5rem;
             font-weight: 800;
-            color: #059669;
+            color: var(--success-green);
             margin-bottom: 1rem;
         }
 
-        .ai-score {
-            display: inline-block;
-            background: linear-gradient(45deg, #10b981, #059669);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 1rem;
-            font-size: 0.875rem;
-            font-weight: 600;
-        }
-
-        .features-section {
-            margin: 6rem 0;
-            text-align: center;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 1.5rem;
-            padding: 3rem 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.25);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            color: #fbbf24;
-        }
-
-        .feature-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 1rem;
-        }
-
-        .feature-description {
-            color: white;
-            opacity: 0.9;
-            line-height: 1.6;
-        }
-
-        .agent-dashboard {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-radius: 2rem;
-            padding: 3rem;
-            margin: 4rem 0;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .dashboard-header {
+        .property-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            gap: 1rem;
         }
 
-        .dashboard-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1f2937;
-        }
-
-        .tier-badge {
-            background: linear-gradient(45deg, #fbbf24, #f59e0b);
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 1rem;
-            font-weight: 600;
+        .agent-info {
             display: flex;
             align-items: center;
             gap: 0.5rem;
+        }
+
+        .agent-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--accent-purple);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .agent-name {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .contact-btn {
+            background: var(--accent-purple);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            background: #7c3aed;
+            transform: translateY(-1px);
         }
 
         .dashboard-metrics {
@@ -466,47 +615,47 @@
         }
 
         .metric-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1.5rem;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
             border-radius: 1rem;
+            padding: 1.5rem;
             text-align: center;
         }
 
         .metric-value {
             font-size: 2rem;
             font-weight: 800;
+            color: var(--accent-purple);
             display: block;
+            margin-bottom: 0.5rem;
         }
 
         .metric-label {
-            opacity: 0.9;
-            margin-top: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .metric-change {
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.25rem;
+        }
+
+        .metric-change.positive {
+            color: var(--success-green);
+        }
+
+        .metric-change.negative {
+            color: var(--danger-red);
         }
 
         .leads-section {
-            margin-top: 2rem;
-        }
-
-        .leads-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .leads-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1f2937;
-        }
-
-        .filter-dropdown {
-            padding: 0.5rem 1rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 0.5rem;
-            background: white;
-            cursor: pointer;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1rem;
+            padding: 2rem;
         }
 
         .leads-grid {
@@ -515,15 +664,15 @@
         }
 
         .lead-card {
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 1rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 0.75rem;
             padding: 1.5rem;
             transition: all 0.3s ease;
         }
 
         .lead-card:hover {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent-purple);
             transform: translateY(-2px);
         }
 
@@ -534,18 +683,13 @@
             margin-bottom: 1rem;
         }
 
-        .lead-name {
-            font-weight: 700;
-            color: #1f2937;
-        }
-
         .lead-score {
-            background: linear-gradient(45deg, #10b981, #059669);
+            background: linear-gradient(135deg, var(--success-green), #059669);
             color: white;
             padding: 0.25rem 0.75rem;
-            border-radius: 1rem;
-            font-size: 0.875rem;
-            font-weight: 600;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
         }
 
         .lead-details {
@@ -557,78 +701,24 @@
 
         .lead-actions {
             display: flex;
-            gap: 1rem;
-        }
-
-        .lead-btn {
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-        }
-
-        .btn-secondary {
-            background: #f3f4f6;
-            color: #374151;
-        }
-
-        .lead-btn:hover {
-            transform: translateY(-1px);
-        }
-
-        .floating-elements {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .floating-element {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: float 15s infinite linear;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
+            gap: 0.75rem;
         }
 
         .notification {
             position: fixed;
             top: 100px;
             right: 2rem;
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--card-bg);
+            border: 1px solid var(--success-green);
             backdrop-filter: blur(20px);
             padding: 1rem 1.5rem;
-            border-radius: 1rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border-left: 4px solid #10b981;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
             display: none;
             animation: slideIn 0.3s ease;
+            color: var(--success-green);
+            font-weight: 600;
+            max-width: 300px;
         }
 
         @keyframes slideIn {
@@ -642,12 +732,44 @@
             }
         }
 
+        .loading-state {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: static;
+                order: 2;
+            }
+        }
+
         @media (max-width: 768px) {
             .hero-title {
                 font-size: 2.5rem;
             }
             
-            .search-form {
+            .properties-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -655,11 +777,7 @@
                 grid-column: span 1;
             }
             
-            .properties-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav-links {
+            .nav-menu {
                 display: none;
             }
         }
@@ -669,549 +787,763 @@
         }
 
         @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            100% {
-                transform: scale(1);
-            }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
     </style>
 </head>
 <body>
-    <div class="floating-elements">
-        <div class="floating-element" style="left: 10%; width: 20px; height: 20px; animation-delay: 0s;"></div>
-        <div class="floating-element" style="left: 20%; width: 15px; height: 15px; animation-delay: 2s;"></div>
-        <div class="floating-element" style="left: 30%; width: 25px; height: 25px; animation-delay: 4s;"></div>
-        <div class="floating-element" style="left: 40%; width: 18px; height: 18px; animation-delay: 6s;"></div>
-        <div class="floating-element" style="left: 50%; width: 22px; height: 22px; animation-delay: 8s;"></div>
-        <div class="floating-element" style="left: 60%; width: 16px; height: 16px; animation-delay: 10s;"></div>
-        <div class="floating-element" style="left: 70%; width: 24px; height: 24px; animation-delay: 12s;"></div>
-        <div class="floating-element" style="left: 80%; width: 19px; height: 19px; animation-delay: 14s;"></div>
-        <div class="floating-element" style="left: 90%; width: 21px; height: 21px; animation-delay: 16s;"></div>
-    </div>
+    <div class="grid-overlay"></div>
 
     <header class="header">
         <nav class="nav">
             <div class="logo">
                 <i class="fas fa-building"></i>
-                SpaceMatch 2.0
+                SpaceMatch
             </div>
-            <div class="nav-links">
+            <div class="nav-menu">
                 <a href="#" class="nav-link">Properties</a>
                 <a href="#" class="nav-link">For Agents</a>
-                <a href="#" class="nav-link">Services</a>
-                <a href="#" class="nav-link">About</a>
-                <button class="login-btn">Login / Sign Up</button>
+                <a href="#" class="nav-link">API Docs</a>
+                <a href="#" class="nav-link">Pricing</a>
+            </div>
+            <div class="nav-cta">
+                <a href="#" class="btn btn-outline">Sign In</a>
+                <a href="#" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i>
+                    Start Building
+                </a>
             </div>
         </nav>
     </header>
 
     <div class="notification" id="notification">
-        <strong>🎉 New qualified lead!</strong> Business looking for 5000 sq ft office in Gurgaon
+        <strong>🎉 Real-time update:</strong> New qualified lead matched!
     </div>
 
     <main class="main-container">
-        <section class="hero-section">
-            <h1 class="hero-title">India's First AI-Native Commercial Real Estate Platform</h1>
-            <p class="hero-subtitle">Solving the critical agent incentivization problem while serving Traditional Commercial Spaces, Co-working Solutions, and Independent Offices.</p>
+        <section class="hero">
+            <div class="hero-badge">
+                <i class="fas fa-brain"></i>
+                AI-Native Commercial Real Estate Platform
+            </div>
             
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <span class="stat-number">₹135 Cr</span>
-                    <div class="stat-label">Year 3 Revenue Target</div>
-                </div>
+            <h1 class="hero-title">Build the Future of Commercial Real Estate</h1>
+            <p class="hero-subtitle">
+                Powerful APIs, intelligent matching, and comprehensive CRM tools for developers and agents ready to revolutionize commercial property transactions.
+            </p>
+
+            <div class="hero-stats">
                 <div class="stat-card">
                     <span class="stat-number">10,000+</span>
-                    <div class="stat-label">Properties at Launch</div>
+                    <div class="stat-label">Properties Listed</div>
                 </div>
                 <div class="stat-card">
-                    <span class="stat-number">90 Days</span>
-                    <div class="stat-label">Prototype Timeline</div>
+                    <span class="stat-number">500+</span>
+                    <div class="stat-label">Active Agents</div>
                 </div>
                 <div class="stat-card">
-                    <span class="stat-number">AI-First</span>
-                    <div class="stat-label">Every Feature</div>
+                    <span class="stat-number">89%</span>
+                    <div class="stat-label">Match Accuracy</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">24/7</span>
+                    <div class="stat-label">API Uptime</div>
                 </div>
             </div>
-        </section>
 
-        <section class="search-section">
-            <h2 class="search-title">Find Your Perfect Commercial Space</h2>
-            
-            <div class="search-tabs">
-                <div class="search-tab active" data-tab="traditional">Traditional Commercial</div>
-                <div class="search-tab" data-tab="coworking">Co-working Spaces</div>
-                <div class="search-tab" data-tab="independent">Independent Offices</div>
-            </div>
-
-            <div class="search-form">
-                <div class="form-group">
-                    <input type="text" class="form-input" placeholder="Location (e.g., Gurgaon, Mumbai, Bangalore)" value="Gurgaon">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-input" placeholder="Space Size (sq ft)" value="1000-5000">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-input" placeholder="Budget Range (₹/month)" value="₹50K - ₹2L">
-                </div>
-                <div class="form-group">
-                    <select class="form-input">
-                        <option>Lease Duration</option>
-                        <option>1-2 years</option>
-                        <option>3-5 years</option>
-                        <option>5+ years</option>
-                        <option>Flexible</option>
-                    </select>
-                </div>
-                <button class="search-btn">
-                    <i class="fas fa-search"></i> Search with AI Matching
+            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+                <button class="btn btn-primary" onclick="showDeveloperDemo()">
+                    <i class="fas fa-code"></i>
+                    Developer API Demo
+                </button>
+                <button class="btn btn-outline" onclick="showAgentDemo()">
+                    <i class="fas fa-user-tie"></i>
+                    Agent Dashboard Demo
                 </button>
             </div>
         </section>
 
-        <section class="properties-section">
-            <h2 class="section-title">AI-Matched Properties</h2>
-            
-            <div class="properties-grid">
-                <div class="property-card" onclick="showPropertyDetails(this)">
-                    <div class="property-image">
-                        <div class="property-badge">Traditional Commercial</div>
-                        <div class="property-actions">
-                            <button class="action-btn"><i class="fas fa-heart"></i></button>
-                            <button class="action-btn"><i class="fas fa-share"></i></button>
-                        </div>
+        <div class="dashboard-container">
+            <aside class="sidebar">
+                <div class="user-profile">
+                    <div class="avatar">RK</div>
+                    <div class="user-name">Rajesh Kumar</div>
+                    <div class="user-role">Senior Property Agent</div>
+                    <div class="agent-tier">Gold Tier</div>
+                </div>
+
+                <ul class="sidebar-menu">
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link active">
+                            <i class="fas fa-home"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link">
+                            <i class="fas fa-search"></i>
+                            Property Search
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link">
+                            <i class="fas fa-users"></i>
+                            My Leads
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link">
+                            <i class="fas fa-building"></i>
+                            My Properties
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link">
+                            <i class="fas fa-chart-line"></i>
+                            Analytics
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link">
+                            <i class="fas fa-cog"></i>
+                            API Settings
+                        </a>
+                    </li>
+                </ul>
+            </aside>
+
+            <main class="main-content">
+                <div class="dashboard-metrics">
+                    <div class="metric-card">
+                        <span class="metric-value">₹12.5L</span>
+                        <div class="metric-label">This Month's Commission</div>
+                        <div class="metric-change positive">+23% from last month</div>
                     </div>
-                    <div class="property-info">
-                        <h3 class="property-title">Prime Office Tower - Cyber City</h3>
-                        <div class="property-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            DLF Cyber City, Gurgaon
-                        </div>
-                        <div class="property-details">
-                            <div class="detail-item">
-                                <i class="fas fa-expand"></i>
-                                2,500 sq ft
-                            </div>
-                            <div class="detail-item">
-                                <i class="fas fa-car"></i>
-                                20 Parking
-                            </div>
-                            <div class="detail-item">
-                                <i class="fas fa-calendar"></i>
-                                3-5 years
-                            </div>
-                            <div class="detail-item">
-                                <i class="fas fa-star"></i>
-                                Class A Building
-                            </div>
-                        </div>
-                        <div class="property-price">₹1,25,000/month</div>
-                        <span class="ai-score">AI Match: 94%</span>
+                    <div class="metric-card">
+                        <span class="metric-value">47</span>
+                        <div class="metric-label">Active Leads</div>
+                        <div class="metric-change positive">+8 new today</div>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-value">92%</span>
+                        <div class="metric-label">Response Rate</div>
+                        <div class="metric-change positive">+5% this week</div>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-value">156</span>
+                        <div class="metric-label">Properties Claimed</div>
+                        <div class="metric-change positive">+12 this month</div>
                     </div>
                 </div>
 
-                <div class="property-card" onclick="showPropertyDetails(this)">
-                    <div class="property-image">
-                        <div class="property-badge">Co-working Space</div>
-                        <div class="property-actions">
-                            <button class="action-btn"><i class="fas fa-heart"></i></button>
-                            <button class="action-btn"><i class="fas fa-share"></i></button>
-                        </div>
-                    </div>
-                    <div class="property-info">
-                        <h3 class="property-title">Modern Co-working Hub</h3>
-                        <div class="property-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            Sector 44, Gurgaon
-                        </div>
-                        <div class="property-details">
-                            <div class="detail-item">
-                                <i class="fas fa-users"></i>
-                                50 Seats
-                            </div>
-                            <div class="detail-item">
-                                <i class="fas fa-coffee"></i>
-                                Café Included
-                            </div>
-                            <div class="detail-item">
-                                <i class="fas fa-wifi"></i>
-                                High-speed WiFi
-                            </div>
-                            <div class="detail-item">
-                                <i class="fas fa-clock"></i>
-                                24/7 Access
-                            </div>
-                        </div>
-                        <div class="property-price">₹12,000/seat/month</div>
-                        <span class="ai-score">AI Match: 88%</span>
-                    </div>
-                </div>
-
-                <div class="property-card" onclick="showPropertyDetails(this)">
-                    <div class="property-image">
-                        <div class="property-badge">Independent Office</div>
-                        <div class="property-actions">
-                            <button class="action-btn"><i class="fas fa-heart"></i></button>
-                            <button class="action-btn"><i class="fas fa-share"></i></button>
-                        </div>
-                    </div>
-                    <div class="property-info">
-                        <h3 class="property-title">Luxury Independent Office</h3>
-                        <div class="property-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            Golf Course Road, Gurgaon
-                        </div>
-                        <div class="property-details">
-                            <div class="detail-item">
-                                <i class="fas fa-expand"></i>
-                                3,200 sq ft
-                            </div>
-                            <div class="detail-item">
-                                <i class="fas fa-building"></i>
-                                Private Floor
-                            </div>
-                            <div class="detail-item">
-                                <i class="fas fa-car"></i>
-                                25 Parking
-                            </div>
-                            <div class="detail-item">
-                                <i class="fas fa-leaf"></i>
-                                Green Building
-                            </div>
-                        </div>
-                        <div class="property-price">₹1,92,000/month</div>
-                        <span class="ai-score">AI Match: 91%</span>
-                    </div>
-                </div>
-
-                <div class="property-card" onclick="showPropertyDetails(this)">
-                    <div class="property-image">
-                        <div class="property-badge">Traditional Commercial</div>
-                        <div class="property-actions">
-                            <button class="action-btn"><i class="fas fa-heart"></i></button>
-                            <button class="action-btn"><i class="fas fa-share"></i></button>
-                        </div>
-                    </div>
-                    <div class="property-info">
-                        <h3 class="property-title">Tech Park Office Space</h3>
-                        <div class="property-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            Udyog Vihar, Gurgaon
-                        </div>
-                        <div class="property-details">
-                            <div class="detail-item">
-                                <i class="fas fa-expand"></i>
-                                1,800 sq ft
-                            </div>
-                            <div class="detail-item">
-                                <i class="fas fa-subway"></i>
-                                Metro Connected
-                            </div>
-                            <div class="detail-item">
-                                <i class="fas fa-shield-alt"></i>
-                                24/7 Security
-                            </div>
-                            <div class="detail-item">
-                                <i class="fas fa-utensils"></i>
-                                Food Court
-                            </div>
-                        </div>
-                        <div class="property-price">₹85,000/month</div>
-                        <span class="ai-score">AI Match: 96%</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="features-section">
-            <h2 class="section-title">Why Choose SpaceMatch 2.0?</h2>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3 class="feature-title">AI-Powered Matching</h3>
-                    <p class="feature-description">Our multi-agent AI system analyzes your requirements and matches you with perfect properties using machine learning algorithms.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <h3 class="feature-title">Priority Lead System</h3>
-                    <p class="feature-description">First-to-claim property advantage with AI-qualified leads ensures agents get maximum ROI on their time investment.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="feature-title">CRM-Native Platform</h3>
-                    <p class="feature-description">End-to-end workflow from discovery to closure with integrated CRM, document automation, and financial services.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <h3 class="feature-title">3-Segment Coverage</h3>
-                    <p class="feature-description">Complete commercial real estate spectrum: Traditional Commercial, Co-working Solutions, and Independent Offices.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-file-contract"></i>
-                    </div>
-                    <h3 class="feature-title">Document Automation</h3>
-                    <p class="feature-description">AI-powered legal document generation, verification, and compliance checking saves weeks of manual work.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-money-bill-wave"></i>
-                    </div>
-                    <h3 class="feature-title">Financial Integration</h3>
-                    <p class="feature-description">Integrated loan marketplace, insurance hub, and financial planning tools with 15+ lending partners.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="agent-dashboard">
-            <div class="dashboard-header">
-                <h2 class="dashboard-title">Agent Dashboard</h2>
-                <div class="tier-badge">
-                    <i class="fas fa-crown"></i>
-                    Gold Agent
-                </div>
-            </div>
-
-            <div class="dashboard-metrics">
-                <div class="metric-card">
-                    <span class="metric-value">8</span>
-                    <div class="metric-label">Deals This Month</div>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">₹12.5L</span>
-                    <div class="metric-label">Commission Earned</div>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">92%</span>
-                    <div class="metric-label">Conversion Rate</div>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">47</span>
-                    <div class="metric-label">Properties Claimed</div>
-                </div>
-            </div>
-
-            <div class="leads-section">
-                <div class="leads-header">
-                    <h3 class="leads-title">Priority Leads</h3>
-                    <select class="filter-dropdown">
-                        <option>All Leads</option>
-                        <option>High Priority</option>
-                        <option>New Leads</option>
-                        <option>Follow-up Required</option>
-                    </select>
-                </div>
-
-                <div class="leads-grid">
-                    <div class="lead-card">
-                        <div class="lead-header">
-                            <div class="lead-name">TechCorp Solutions</div>
-                            <div class="lead-score">Score: 94</div>
-                        </div>
-                        <div class="lead-details">
-                            <div class="detail-item">
-                                <i class="fas fa-building"></i>
-                                5000 sq ft Office
-                            </div>
-                            <div class="detail-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                Cyber City
-                            </div>
-                            <div class="detail-item">
-                                <i class="fas fa-rupee-sign"></i>
-                                ₹3L-5L budget
-                            </div>
-                            <div class="detail-item">
-                                <i class="fas fa-clock"></i>
-                                Urgent (2 weeks)
-                            </div>
-                        </div>
-                        <div class="lead-actions">
-                            <button class="lead-btn btn-primary">Contact Lead</button>
-                            <button class="lead-btn btn-secondary">Schedule Visit</button>
+                <section class="search-section">
+                    <div class="section-header">
+                        <h2 class="section-title">AI Property Search</h2>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <button class="btn btn-outline" onclick="showAPICode()">
+                                <i class="fas fa-code"></i>
+                                API Code
+                            </button>
+                            <button class="btn btn-primary" onclick="saveSearch()">
+                                <i class="fas fa-save"></i>
+                                Save Search
+                            </button>
                         </div>
                     </div>
 
-                    <div class="lead-card">
-                        <div class="lead-header">
-                            <div class="lead-name">Creative Minds Agency</div>
-                            <div class="lead-score">Score: 87</div>
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" data-type="traditional">
+                            Traditional Commercial
+                        </button>
+                        <button class="filter-tab" data-type="coworking">
+                            Co-working Spaces
+                        </button>
+                        <button class="filter-tab" data-type="independent">
+                            Independent Offices
+                        </button>
+                    </div>
+
+                    <div class="search-form">
+                        <div class="form-group">
+                            <input type="text" class="form-input" placeholder="Location (e.g., Gurgaon, Mumbai)" value="Cyber City, Gurgaon">
                         </div>
-                        <div class="lead-details">
-                            <div class="detail-item">
-                                <i class="fas fa-users"></i>
-                                Co-working (30 seats)
-                            </div>
-                            <div class="detail-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                Golf Course Road
-                            </div>
-                            <div class="detail-item">
-                                <i class="fas fa-rupee-sign"></i>
-                                ₹4L-6L budget
-                            </div>
-                            <div class="detail-item">
-                                <i class="fas fa-calendar"></i>
-                                Flexible timing
-                            </div>
+                        <div class="form-group">
+                            <input type="text" class="form-input" placeholder="Size requirement" value="2000-5000 sq ft">
                         </div>
-                        <div class="lead-actions">
-                            <button class="lead-btn btn-primary">Contact Lead</button>
-                            <button class="lead-btn btn-secondary">Send Proposal</button>
+                        <div class="form-group">
+                            <input type="text" class="form-input" placeholder="Budget range" value="₹1L-3L/month">
+                        </div>
+                        <div class="form-group">
+                            <select class="form-input">
+                                <option>Lease Duration</option>
+                                <option>3-5 years</option>
+                                <option>5-9 years</option>
+                                <option>Flexible terms</option>
+                            </select>
+                        </div>
+                        <button class="search-btn" onclick="performSearch()">
+                            <i class="fas fa-search"></i>
+                            AI-Powered Search
+                        </button>
+                    </div>
+                </section>
+
+                <section class="search-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Matched Properties</h2>
+                        <div style="display: flex; gap: 0.5rem; align-items: center;">
+                            <span style="color: var(--text-secondary); font-size: 0.9rem;">Sort by:</span>
+                            <select class="form-input" style="width: auto; padding: 0.5rem 1rem;">
+                                <option>AI Match Score</option>
+                                <option>Price: Low to High</option>
+                                <option>Price: High to Low</option>
+                                <option>Size</option>
+                                <option>Date Added</option>
+                            </select>
                         </div>
                     </div>
 
-                    <div class="lead-card">
-                        <div class="lead-header">
-                            <div class="lead-name">GlobalTech Enterprises</div>
-                            <div class="lead-score">Score: 91</div>
+                    <div class="properties-grid">
+                        <div class="property-card" onclick="showPropertyDetails(this, 'Prime Tower Cyber City')">
+                            <div class="property-image">
+                                <div class="property-badges">
+                                    <div class="property-badge">Traditional</div>
+                                    <div class="property-badge">Class A</div>
+                                </div>
+                                <div class="property-actions">
+                                    <button class="action-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="action-btn" onclick="event.stopPropagation(); shareProperty(this)">
+                                        <i class="fas fa-share"></i>
+                                    </button>
+                                </div>
+                                <div class="ai-score">94% Match</div>
+                            </div>
+                            <div class="property-content">
+                                <h3 class="property-title">Prime Tower - Cyber City</h3>
+                                <div class="property-location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    DLF Cyber City, Gurgaon
+                                </div>
+                                <div class="property-details">
+                                    <div class="detail-item">
+                                        <i class="fas fa-expand detail-icon"></i>
+                                        3,200 sq ft
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-car detail-icon"></i>
+                                        25 Parking
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-calendar detail-icon"></i>
+                                        3-9 years
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-wifi detail-icon"></i>
+                                        High-speed
+                                    </div>
+                                </div>
+                                <div class="property-price">₹1,85,000/month</div>
+                                <div class="property-footer">
+                                    <div class="agent-info">
+                                        <div class="agent-avatar">SK</div>
+                                        <div class="agent-name">Sandeep Kumar</div>
+                                    </div>
+                                    <button class="contact-btn" onclick="event.stopPropagation(); contactAgent(this)">
+                                        Contact Agent
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="lead-details">
-                            <div class="detail-item">
-                                <i class="fas fa-building"></i>
-                                8000 sq ft HQ
+
+                        <div class="property-card" onclick="showPropertyDetails(this, 'Modern Coworking Hub')">
+                            <div class="property-image">
+                                <div class="property-badges">
+                                    <div class="property-badge">Co-working</div>
+                                    <div class="property-badge">Flexible</div>
+                                </div>
+                                <div class="property-actions">
+                                    <button class="action-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="action-btn" onclick="event.stopPropagation(); shareProperty(this)">
+                                        <i class="fas fa-share"></i>
+                                    </button>
+                                </div>
+                                <div class="ai-score">87% Match</div>
                             </div>
-                            <div class="detail-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                Sector 44
-                            </div>
-                            <div class="detail-item">
-                                <i class="fas fa-rupee-sign"></i>
-                                ₹6L-10L budget
-                            </div>
-                            <div class="detail-item">
-                                <i class="fas fa-handshake"></i>
-                                Long-term lease
+                            <div class="property-content">
+                                <h3 class="property-title">Workspace+ Modern Hub</h3>
+                                <div class="property-location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    Sector 44, Gurgaon
+                                </div>
+                                <div class="property-details">
+                                    <div class="detail-item">
+                                        <i class="fas fa-users detail-icon"></i>
+                                        50 Seats
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-coffee detail-icon"></i>
+                                        Café Included
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-clock detail-icon"></i>
+                                        24/7 Access
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-shield-alt detail-icon"></i>
+                                        Secure
+                                    </div>
+                                </div>
+                                <div class="property-price">₹15,000/seat/month</div>
+                                <div class="property-footer">
+                                    <div class="agent-info">
+                                        <div class="agent-avatar">AM</div>
+                                        <div class="agent-name">Amit Malhotra</div>
+                                    </div>
+                                    <button class="contact-btn" onclick="event.stopPropagation(); contactAgent(this)">
+                                        Contact Agent
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                        <div class="lead-actions">
-                            <button class="lead-btn btn-primary">Contact Lead</button>
-                            <button class="lead-btn btn-secondary">View Details</button>
+
+                        <div class="property-card" onclick="showPropertyDetails(this, 'Executive Office Suite')">
+                            <div class="property-image">
+                                <div class="property-badges">
+                                    <div class="property-badge">Independent</div>
+                                    <div class="property-badge">Luxury</div>
+                                </div>
+                                <div class="property-actions">
+                                    <button class="action-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="action-btn" onclick="event.stopPropagation(); shareProperty(this)">
+                                        <i class="fas fa-share"></i>
+                                    </button>
+                                </div>
+                                <div class="ai-score">91% Match</div>
+                            </div>
+                            <div class="property-content">
+                                <h3 class="property-title">Executive Office Suite</h3>
+                                <div class="property-location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    Golf Course Road, Gurgaon
+                                </div>
+                                <div class="property-details">
+                                    <div class="detail-item">
+                                        <i class="fas fa-expand detail-icon"></i>
+                                        2,800 sq ft
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-building detail-icon"></i>
+                                        Private Floor
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-car detail-icon"></i>
+                                        20 Parking
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-leaf detail-icon"></i>
+                                        Green Certified
+                                    </div>
+                                </div>
+                                <div class="property-price">₹2,25,000/month</div>
+                                <div class="property-footer">
+                                    <div class="agent-info">
+                                        <div class="agent-avatar">PS</div>
+                                        <div class="agent-name">Priya Sharma</div>
+                                    </div>
+                                    <button class="contact-btn" onclick="event.stopPropagation(); contactAgent(this)">
+                                        Contact Agent
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="property-card" onclick="showPropertyDetails(this, 'Tech Park Office')">
+                            <div class="property-image">
+                                <div class="property-badges">
+                                    <div class="property-badge">Traditional</div>
+                                    <div class="property-badge">IT Park</div>
+                                </div>
+                                <div class="property-actions">
+                                    <button class="action-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="action-btn" onclick="event.stopPropagation(); shareProperty(this)">
+                                        <i class="fas fa-share"></i>
+                                    </button>
+                                </div>
+                                <div class="ai-score">89% Match</div>
+                            </div>
+                            <div class="property-content">
+                                <h3 class="property-title">Udyog Vihar Tech Office</h3>
+                                <div class="property-location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    Udyog Vihar Phase 4, Gurgaon
+                                </div>
+                                <div class="property-details">
+                                    <div class="detail-item">
+                                        <i class="fas fa-expand detail-icon"></i>
+                                        1,950 sq ft
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-subway detail-icon"></i>
+                                        Metro 500m
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-utensils detail-icon"></i>
+                                        Food Court
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-shield-alt detail-icon"></i>
+                                        24/7 Security
+                                    </div>
+                                </div>
+                                <div class="property-price">₹98,000/month</div>
+                                <div class="property-footer">
+                                    <div class="agent-info">
+                                        <div class="agent-avatar">VG</div>
+                                        <div class="agent-name">Vikash Gupta</div>
+                                    </div>
+                                    <button class="contact-btn" onclick="event.stopPropagation(); contactAgent(this)">
+                                        Contact Agent
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
+                </section>
+
+                <section class="leads-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Priority Leads Queue</h2>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <button class="btn btn-outline" onclick="exportLeads()">
+                                <i class="fas fa-download"></i>
+                                Export
+                            </button>
+                            <button class="btn btn-primary" onclick="bulkAction()">
+                                <i class="fas fa-tasks"></i>
+                                Bulk Action
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="leads-grid">
+                        <div class="lead-card">
+                            <div class="lead-header">
+                                <div>
+                                    <h4 style="color: var(--text-primary); font-weight: 700;">TechCorp Solutions Pvt Ltd</h4>
+                                    <p style="color: var(--text-secondary); font-size: 0.875rem; margin-top: 0.25rem;">Looking for office space</p>
+                                </div>
+                                <div class="lead-score">Score: 94</div>
+                            </div>
+                            <div class="lead-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-building detail-icon"></i>
+                                    4,500 sq ft required
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-map-marker-alt detail-icon"></i>
+                                    Cyber City preferred
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-rupee-sign detail-icon"></i>
+                                    ₹2.5L-4L budget
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-clock detail-icon"></i>
+                                    Urgent (2 weeks)
+                                </div>
+                            </div>
+                            <div class="lead-actions">
+                                <button class="btn btn-primary" onclick="contactLead(this)">
+                                    <i class="fas fa-phone"></i>
+                                    Contact
+                                </button>
+                                <button class="btn btn-outline" onclick="scheduleMeeting(this)">
+                                    <i class="fas fa-calendar"></i>
+                                    Schedule
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="lead-card">
+                            <div class="lead-header">
+                                <div>
+                                    <h4 style="color: var(--text-primary); font-weight: 700;">Creative Digital Agency</h4>
+                                    <p style="color: var(--text-secondary); font-size: 0.875rem; margin-top: 0.25rem;">Co-working space inquiry</p>
+                                </div>
+                                <div class="lead-score">Score: 87</div>
+                            </div>
+                            <div class="lead-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-users detail-icon"></i>
+                                    25-30 team members
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-map-marker-alt detail-icon"></i>
+                                    Sector 44/48
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-rupee-sign detail-icon"></i>
+                                    ₹12K-18K per seat
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar detail-icon"></i>
+                                    Flexible timing
+                                </div>
+                            </div>
+                            <div class="lead-actions">
+                                <button class="btn btn-primary" onclick="contactLead(this)">
+                                    <i class="fas fa-phone"></i>
+                                    Contact
+                                </button>
+                                <button class="btn btn-outline" onclick="sendProposal(this)">
+                                    <i class="fas fa-file-alt"></i>
+                                    Send Proposal
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="lead-card">
+                            <div class="lead-header">
+                                <div>
+                                    <h4 style="color: var(--text-primary); font-weight: 700;">GlobalTech Enterprises</h4>
+                                    <p style="color: var(--text-secondary); font-size: 0.875rem; margin-top: 0.25rem;">Independent office requirement</p>
+                                </div>
+                                <div class="lead-score">Score: 91</div>
+                            </div>
+                            <div class="lead-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-building detail-icon"></i>
+                                    6,000-8,000 sq ft
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-map-marker-alt detail-icon"></i>
+                                    Golf Course Road
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-rupee-sign detail-icon"></i>
+                                    ₹5L-8L budget
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-handshake detail-icon"></i>
+                                    Long-term lease
+                                </div>
+                            </div>
+                            <div class="lead-actions">
+                                <button class="btn btn-primary" onclick="contactLead(this)">
+                                    <i class="fas fa-phone"></i>
+                                    Contact
+                                </button>
+                                <button class="btn btn-outline" onclick="viewDetails(this)">
+                                    <i class="fas fa-eye"></i>
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
     </main>
 
     <script>
-        // Search tab functionality
-        document.querySelectorAll('.search-tab').forEach(tab => {
+        // Property search functionality
+        function performSearch() {
+            const btn = document.querySelector('.search-btn');
+            const originalContent = btn.innerHTML;
+            
+            btn.innerHTML = '<div class="loading-state"><div class="spinner"></div>AI Processing Search...</div>';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check"></i> Found 24 Properties';
+                btn.style.background = 'linear-gradient(135deg, var(--success-green), #059669)';
+                
+                showNotification('AI found 24 matching properties with high accuracy scores!');
+                
+                // Add pulse effect to property cards
+                document.querySelectorAll('.property-card').forEach(card => {
+                    card.classList.add('pulse');
+                    setTimeout(() => card.classList.remove('pulse'), 2000);
+                });
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalContent;
+                    btn.style.background = 'linear-gradient(135deg, var(--accent-purple), var(--accent-cyan))';
+                    btn.disabled = false;
+                }, 3000);
+            }, 2000);
+        }
+
+        // Property type filter functionality
+        document.querySelectorAll('.filter-tab').forEach(tab => {
             tab.addEventListener('click', function() {
-                document.querySelectorAll('.search-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
                 
-                // Update search form based on selection
-                const tabType = this.dataset.tab;
-                updateSearchForm(tabType);
+                const type = this.dataset.type;
+                updateSearchForm(type);
+                showNotification(`Switched to ${type} property search`);
             });
         });
 
         function updateSearchForm(type) {
             const inputs = document.querySelectorAll('.form-input');
             
-            if (type === 'coworking') {
-                inputs[1].placeholder = 'Number of seats';
-                inputs[1].value = '20-50 seats';
-                inputs[2].placeholder = 'Budget per seat/month';
-                inputs[2].value = '₹8K-15K per seat';
-            } else if (type === 'independent') {
-                inputs[1].placeholder = 'Office size (sq ft)';
-                inputs[1].value = '2000-5000';
-                inputs[2].placeholder = 'Monthly budget';
-                inputs[2].value = '₹1L-5L';
-            } else {
-                inputs[1].placeholder = 'Space Size (sq ft)';
-                inputs[1].value = '1000-5000';
-                inputs[2].placeholder = 'Budget Range (₹/month)';
-                inputs[2].value = '₹50K-2L';
+            switch(type) {
+                case 'traditional':
+                    inputs[1].placeholder = 'Office space size (sq ft)';
+                    inputs[1].value = '2000-5000 sq ft';
+                    inputs[2].placeholder = 'Monthly budget range';
+                    inputs[2].value = '₹1L-3L/month';
+                    break;
+                case 'coworking':
+                    inputs[1].placeholder = 'Number of seats needed';
+                    inputs[1].value = '20-50 seats';
+                    inputs[2].placeholder = 'Budget per seat/month';
+                    inputs[2].value = '₹12K-18K/seat';
+                    break;
+                case 'independent':
+                    inputs[1].placeholder = 'Private office size';
+                    inputs[1].value = '3000-6000 sq ft';
+                    inputs[2].placeholder = 'Investment budget';
+                    inputs[2].value = '₹3L-8L/month';
+                    break;
             }
         }
 
-        // Property card interactions
-        function showPropertyDetails(card) {
-            card.style.transform = 'scale(1.02)';
+        // Property interaction functions
+        function showPropertyDetails(card, propertyName) {
+            card.style.transform = 'translateY(-8px) scale(1.02)';
             setTimeout(() => {
                 card.style.transform = '';
-            }, 200);
+            }, 300);
             
-            // Show notification
-            showNotification('Property details viewed! Agent will contact you within 2 hours.');
+            showNotification(`Viewing ${propertyName} - Agent will be notified of your interest`);
         }
 
-        // Heart button functionality
-        document.querySelectorAll('.action-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                
-                if (this.querySelector('.fa-heart')) {
-                    this.style.background = '#ef4444';
-                    this.style.color = 'white';
-                    showNotification('Property saved to favorites!');
-                } else if (this.querySelector('.fa-share')) {
-                    showNotification('Property link copied to clipboard!');
-                }
-            });
-        });
+        function toggleFavorite(btn) {
+            const heart = btn.querySelector('i');
+            if (heart.classList.contains('fas')) {
+                heart.style.color = '#ef4444';
+                btn.style.background = 'rgba(239, 68, 68, 0.2)';
+                showNotification('Property saved to favorites!');
+            }
+        }
 
-        // Lead action buttons
-        document.querySelectorAll('.lead-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                this.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 150);
-                
-                if (this.textContent.includes('Contact')) {
-                    showNotification('Lead contacted successfully! Response expected within 1 hour.');
-                } else if (this.textContent.includes('Schedule')) {
-                    showNotification('Site visit scheduled for tomorrow 2:00 PM.');
-                } else {
-                    showNotification('Proposal sent to lead via email and WhatsApp.');
-                }
-            });
-        });
+        function shareProperty(btn) {
+            showNotification('Property link copied to clipboard!');
+        }
 
-        // Search button functionality
-        document.querySelector('.search-btn').addEventListener('click', function() {
-            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Searching...';
+        function contactAgent(btn) {
+            btn.innerHTML = '<i class="fas fa-check"></i> Contacted';
+            btn.style.background = '#10b981';
+            btn.disabled = true;
+            
+            showNotification('WhatsApp message sent to agent. Expected response within 1 hour.');
             
             setTimeout(() => {
-                this.innerHTML = '<i class="fas fa-search"></i> Search with AI Matching';
-                showNotification('Found 24 AI-matched properties! Top matches shown below.');
+                btn.innerHTML = 'Contact Agent';
+                btn.style.background = '#8b5cf6';
+                btn.disabled = false;
+            }, 5000);
+        }
+
+        // Lead management functions
+        function contactLead(btn) {
+            const card = btn.closest('.lead-card');
+            card.style.border = '1px solid #10b981';
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Calling...';
+            
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check"></i> Connected';
+                btn.style.background = '#10b981';
+                showNotification('Call connected successfully! Lead is interested.');
                 
-                // Add pulse animation to property cards
-                document.querySelectorAll('.property-card').forEach(card => {
-                    card.classList.add('pulse');
-                    setTimeout(() => {
-                        card.classList.remove('pulse');
-                    }, 2000);
-                });
+                setTimeout(() => {
+                    card.style.border = '1px solid rgba(248, 250, 252, 0.08)';
+                    btn.innerHTML = '<i class="fas fa-phone"></i> Contact';
+                    btn.style.background = '#8b5cf6';
+                }, 3000);
             }, 2000);
-        });
+        }
+
+        function scheduleMeeting(btn) {
+            showNotification('Meeting scheduled for tomorrow 2:00 PM at property location');
+        }
+
+        function sendProposal(btn) {
+            btn.innerHTML = '<i class="fas fa-paper-plane"></i> Sent';
+            btn.disabled = true;
+            showNotification('Proposal sent via email with property recommendations');
+            
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-file-alt"></i> Send Proposal';
+                btn.disabled = false;
+            }, 3000);
+        }
+
+        // Developer demo functions
+        function showDeveloperDemo() {
+            showNotification('Loading API documentation and code examples...');
+            setTimeout(() => {
+                showNotification('Developer resources: REST API, GraphQL, WebSocket real-time updates available');
+            }, 2000);
+        }
+
+        function showAgentDemo() {
+            showNotification('Welcome to the agent dashboard! Explore properties, leads, and analytics.');
+        }
+
+        function showAPICode() {
+            const code = `
+// SpaceMatch API Example
+const response = await fetch('https://api.spacematch.in/v1/properties/search', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer YOUR_API_KEY',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    location: 'Gurgaon',
+    size_min: 2000,
+    size_max: 5000,
+    budget_max: 300000,
+    property_type: 'traditional'
+  })
+});
+
+const properties = await response.json();
+console.log('AI-matched properties:', properties);`;
+            
+            navigator.clipboard.writeText(code);
+            showNotification('API code example copied to clipboard!');
+        }
+
+        function saveSearch() {
+            showNotification('Search preferences saved to your profile');
+        }
+
+        function exportLeads() {
+            showNotification('Leads exported to CSV format');
+        }
+
+        function bulkAction() {
+            showNotification('Bulk action tools: Mass email, status update, assignment available');
+        }
 
         // Notification system
         function showNotification(message) {
             const notification = document.getElementById('notification');
-            notification.innerHTML = '<strong>🎉</strong> ' + message;
+            notification.innerHTML = `<strong><i class="fas fa-bolt"></i> SpaceMatch:</strong> ${message}`;
             notification.style.display = 'block';
             
             setTimeout(() => {
@@ -1219,57 +1551,59 @@
             }, 4000);
         }
 
-        // Animate stats on page load
+        // Real-time updates simulation
+        function simulateRealTimeUpdates() {
+            const updates = [
+                'New property added in Cyber City',
+                'Lead responded to your message',
+                'Property visit scheduled confirmed',
+                'Commission payment processed',
+                'New API integration completed',
+                'Market trends updated for Gurgaon',
+                'Agent tier upgraded to Platinum',
+                'Document verification completed'
+            ];
+            
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    const randomUpdate = updates[Math.floor(Math.random() * updates.length)];
+                    showNotification(randomUpdate);
+                }
+            }, 15000);
+        }
+
+        // Initialize app
         window.addEventListener('load', function() {
             setTimeout(() => {
-                document.querySelectorAll('.stat-card').forEach((card, index) => {
-                    setTimeout(() => {
-                        card.style.transform = 'translateY(-10px)';
-                        setTimeout(() => {
-                            card.style.transform = '';
-                        }, 300);
-                    }, index * 200);
-                });
+                showNotification('Welcome to SpaceMatch! Your dashboard is ready.');
             }, 1000);
             
-            // Show initial notification
-            setTimeout(() => {
-                showNotification('Welcome to SpaceMatch 2.0! AI is analyzing market trends...');
-            }, 3000);
+            simulateRealTimeUpdates();
+            
+            // Animate elements on scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'slideIn 0.6s ease forwards';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.property-card, .lead-card, .metric-card').forEach(el => {
+                observer.observe(el);
+            });
         });
 
-        // Dynamic lead updates
-        setInterval(() => {
-            const leadCards = document.querySelectorAll('.lead-card');
-            if (leadCards.length > 0 && Math.random() > 0.7) {
-                const randomCard = leadCards[Math.floor(Math.random() * leadCards.length)];
-                randomCard.style.border = '2px solid #10b981';
-                setTimeout(() => {
-                    randomCard.style.border = '1px solid #e5e7eb';
-                }, 2000);
-                
-                const messages = [
-                    'New activity on lead!',
-                    'Lead response received!',
-                    'Site visit confirmed!',
-                    'Documents requested!',
-                    'Lead upgraded priority!'
-                ];
-                showNotification(messages[Math.floor(Math.random() * messages.length)]);
-            }
-        }, 10000);
-
-        // Smooth scrolling for mobile
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+        // Enhanced hover effects
+        document.querySelectorAll('.property-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.borderColor = '#8b5cf6';
+                this.style.boxShadow = '0 12px 30px rgba(139, 92, 246, 0.2)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.borderColor = 'rgba(248, 250, 252, 0.08)';
+                this.style.boxShadow = '';
             });
         });
     </script>
