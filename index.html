@@ -3,1607 +3,900 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SpaceMatch - India's AI-Native Commercial Real Estate Platform</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>SpaceMatch 2.0: Revolutionary App Mockups</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
         }
-
-        :root {
-            --primary-dark: #0a0e1a;
-            --secondary-dark: #1a1f2e;
-            --accent-purple: #8b5cf6;
-            --accent-cyan: #06b6d4;
-            --success-green: #10b981;
-            --warning-orange: #f59e0b;
-            --danger-red: #ef4444;
-            --text-primary: #f8fafc;
-            --text-secondary: #cbd5e1;
-            --glass-bg: rgba(248, 250, 252, 0.03);
-            --glass-border: rgba(248, 250, 252, 0.08);
-            --card-bg: rgba(26, 31, 46, 0.8);
-            --input-bg: rgba(248, 250, 252, 0.05);
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%);
         }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, #0f172a 50%, var(--secondary-dark) 100%);
-            color: var(--text-primary);
-            min-height: 100vh;
-            overflow-x: hidden;
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-
-        .grid-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .phone-mockup {
+            width: 280px;
+            height: 570px;
+            background: #000;
+            border-radius: 30px;
+            padding: 8px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .phone-screen {
             width: 100%;
             height: 100%;
-            opacity: 0.02;
-            z-index: -1;
-            background-image: 
-                linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-        }
-
-        .header {
-            background: rgba(10, 14, 26, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border);
-            padding: 1rem 2rem;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-        }
-
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .logo {
-            font-size: 1.75rem;
-            font-weight: 800;
-            color: var(--accent-purple);
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .logo i {
-            color: var(--accent-cyan);
-            font-size: 1.5rem;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: var(--accent-purple);
-            background: var(--glass-bg);
-        }
-
-        .nav-cta {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            border: none;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
-            color: white;
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--text-primary);
-            border: 1px solid var(--glass-border);
-        }
-
-        .btn-outline:hover {
-            background: var(--glass-bg);
-            border-color: var(--accent-purple);
-        }
-
-        .main-container {
-            margin-top: 80px;
-        }
-
-        .hero {
-            padding: 4rem 2rem;
-            text-align: center;
-            background: radial-gradient(circle at center, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
-        }
-
-        .hero-badge {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            color: var(--accent-cyan);
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            display: inline-block;
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 900;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-purple) 50%, var(--accent-cyan) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1.1;
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
-        }
-
-        .hero-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            max-width: 800px;
-            margin: 0 auto 3rem;
-        }
-
-        .stat-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--accent-purple);
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .dashboard-container {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 2rem;
-            padding: 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .sidebar {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            height: fit-content;
-            position: sticky;
-            top: 100px;
-        }
-
-        .user-profile {
-            text-align: center;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--glass-border);
-            margin-bottom: 1.5rem;
-        }
-
-        .avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 1.5rem;
-            color: white;
-            font-weight: 700;
-        }
-
-        .user-name {
-            font-weight: 700;
-            margin-bottom: 0.25rem;
-        }
-
-        .user-role {
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-        }
-
-        .agent-tier {
-            background: linear-gradient(135deg, var(--warning-orange), #fbbf24);
-            color: var(--primary-dark);
-            padding: 0.25rem 0.75rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            margin-top: 0.5rem;
-            display: inline-block;
-        }
-
-        .sidebar-menu {
-            list-style: none;
-        }
-
-        .sidebar-item {
-            margin-bottom: 0.5rem;
-        }
-
-        .sidebar-link {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem;
-            color: var(--text-secondary);
-            text-decoration: none;
-            border-radius: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .sidebar-link:hover,
-        .sidebar-link.active {
-            background: var(--glass-bg);
-            color: var(--accent-purple);
-        }
-
-        .main-content {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .search-section {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 1rem;
-            padding: 2rem;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .filter-tabs {
-            display: flex;
-            gap: 0.5rem;
-            background: var(--glass-bg);
-            padding: 0.25rem;
-            border-radius: 0.75rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .filter-tab {
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            background: transparent;
-            border: none;
-            color: var(--text-secondary);
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            flex: 1;
-            text-align: center;
-        }
-
-        .filter-tab.active {
-            background: var(--accent-purple);
-            color: white;
-            box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
-        }
-
-        .search-form {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group {
+            background: #fff;
+            border-radius: 22px;
+            overflow: hidden;
             position: relative;
         }
-
-        .form-input {
-            width: 100%;
-            padding: 1rem;
-            background: var(--input-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 0.5rem;
-            color: var(--text-primary);
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--accent-purple);
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
-        }
-
-        .form-input::placeholder {
-            color: var(--text-secondary);
-        }
-
-        .search-btn {
-            grid-column: span 2;
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            font-size: 1rem;
+        .swipe-card {
+            width: 240px;
+            height: 320px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
+            transition: transform 0.3s ease;
         }
-
-        .search-btn:hover {
+        .swipe-card:hover {
+            transform: translateY(-5px);
+        }
+        .dashboard-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .dashboard-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
         }
-
-        .properties-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .property-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 1rem;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .property-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-            border-color: var(--accent-purple);
-        }
-
-        .property-image {
-            height: 200px;
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
-            position: relative;
-            overflow: hidden;
-        }
-
-        .property-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-        }
-
-        .property-badges {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .property-badge {
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            backdrop-filter: blur(10px);
-        }
-
-        .property-actions {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .action-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: rgba(0, 0, 0, 0.7);
-            border: none;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(10px);
-        }
-
-        .action-btn:hover {
-            background: var(--accent-purple);
-            transform: scale(1.1);
-        }
-
-        .ai-score {
-            position: absolute;
-            bottom: 1rem;
-            right: 1rem;
-            background: var(--success-green);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.875rem;
-            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
-        }
-
-        .property-content {
-            padding: 1.5rem;
-        }
-
-        .property-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-
-        .property-location {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .property-details {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .detail-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-        }
-
-        .detail-icon {
-            color: var(--accent-purple);
-            width: 16px;
-            text-align: center;
-        }
-
-        .property-price {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--success-green);
-            margin-bottom: 1rem;
-        }
-
-        .property-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .agent-info {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .agent-avatar {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: var(--accent-purple);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: white;
-        }
-
-        .agent-name {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-        }
-
-        .contact-btn {
-            background: var(--accent-purple);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            font-weight: 600;
-            font-size: 0.875rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .contact-btn:hover {
-            background: #7c3aed;
-            transform: translateY(-1px);
-        }
-
-        .dashboard-metrics {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
         .metric-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 24px;
         }
-
-        .metric-value {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--accent-purple);
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .metric-label {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .metric-change {
-            font-size: 0.75rem;
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            padding: 12px 24px;
             font-weight: 600;
-            margin-top: 0.25rem;
-        }
-
-        .metric-change.positive {
-            color: var(--success-green);
-        }
-
-        .metric-change.negative {
-            color: var(--danger-red);
-        }
-
-        .leads-section {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 1rem;
-            padding: 2rem;
-        }
-
-        .leads-grid {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .lead-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 0.75rem;
-            padding: 1.5rem;
+            cursor: pointer;
             transition: all 0.3s ease;
         }
-
-        .lead-card:hover {
-            border-color: var(--accent-purple);
-            transform: translateY(-2px);
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
         }
-
-        .lead-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
+        .nav-tab {
+            background: transparent;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
-
-        .lead-score {
-            background: linear-gradient(135deg, var(--success-green), #059669);
+        .nav-tab.active {
+            background: #3b82f6;
             color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 700;
         }
-
-        .lead-details {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .lead-actions {
-            display: flex;
-            gap: 0.75rem;
-        }
-
-        .notification {
-            position: fixed;
-            top: 100px;
-            right: 2rem;
-            background: var(--card-bg);
-            border: 1px solid var(--success-green);
-            backdrop-filter: blur(20px);
-            padding: 1rem 1.5rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
-            display: none;
-            animation: slideIn 0.3s ease;
-            color: var(--success-green);
-            font-weight: 600;
-            max-width: 300px;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        .loading-state {
+        .property-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #f3f4f6, #e5e7eb);
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
+            color: #6b7280;
+            font-size: 14px;
         }
-
-        .spinner {
-            width: 20px;
-            height: 20px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-top: 2px solid white;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
+        .workflow-step {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
         }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .workflow-step.active {
+            border-color: #3b82f6;
+            background: #eff6ff;
         }
-
-        @media (max-width: 1024px) {
-            .dashboard-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .sidebar {
-                position: static;
-                order: 2;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .properties-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .search-btn {
-                grid-column: span 1;
-            }
-            
-            .nav-menu {
-                display: none;
-            }
-        }
-
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        .workflow-arrow {
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: #3b82f6;
         }
     </style>
 </head>
-<body>
-    <div class="grid-overlay"></div>
-
-    <header class="header">
-        <nav class="nav">
-            <div class="logo">
-                <i class="fas fa-building"></i>
-                SpaceMatch
-            </div>
-            <div class="nav-menu">
-                <a href="#" class="nav-link">Properties</a>
-                <a href="#" class="nav-link">For Agents</a>
-                <a href="#" class="nav-link">API Docs</a>
-                <a href="#" class="nav-link">Pricing</a>
-            </div>
-            <div class="nav-cta">
-                <a href="#" class="btn btn-outline">Sign In</a>
-                <a href="#" class="btn btn-primary">
-                    <i class="fas fa-rocket"></i>
-                    Start Building
-                </a>
-            </div>
-        </nav>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white py-12">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h1 class="text-5xl font-bold mb-4">SpaceMatch 2.0</h1>
+            <p class="text-xl mb-6">Revolutionary Commercial Real Estate Platform</p>
+            <p class="text-lg opacity-90">The Tinder of Commercial Real Estate meets Redfin's Intelligence</p>
+        </div>
     </header>
 
-    <div class="notification" id="notification">
-        <strong>🎉 Real-time update:</strong> New qualified lead matched!
-    </div>
-
-    <main class="main-container">
-        <section class="hero">
-            <div class="hero-badge">
-                <i class="fas fa-brain"></i>
-                AI-Native Commercial Real Estate Platform
-            </div>
+    <!-- Mobile App Mockups Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-4 text-gray-800">Mobile-First Discovery Experience</h2>
+            <p class="text-xl text-center text-gray-600 mb-12">Swipe through commercial properties like never before</p>
             
-            <h1 class="hero-title">Build the Future of Commercial Real Estate</h1>
-            <p class="hero-subtitle">
-                Powerful APIs, intelligent matching, and comprehensive CRM tools for developers and agents ready to revolutionize commercial property transactions.
-            </p>
+            <div class="flex justify-center items-start space-x-8 flex-wrap">
+                <!-- Phone 1 - Property Discovery -->
+                <div class="phone-mockup mb-8">
+                    <div class="phone-screen">
+                        <!-- Status Bar -->
+                        <div class="bg-black text-white text-xs py-1 px-4 flex justify-between">
+                            <span>9:41</span>
+                            <div class="flex space-x-1">
+                                <i class="fas fa-signal"></i>
+                                <i class="fas fa-wifi"></i>
+                                <i class="fas fa-battery-three-quarters"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- App Header -->
+                        <div class="bg-blue-600 text-white p-4">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-lg font-bold">SpaceMatch</h3>
+                                <i class="fas fa-user-circle text-2xl"></i>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-xs">All</button>
+                                <button class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-xs">Co-working</button>
+                                <button class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-xs">Office</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Swipe Card -->
+                        <div class="flex-1 flex items-center justify-center p-4">
+                            <div class="swipe-card relative">
+                                <div class="property-image">
+                                    <div class="text-center">
+                                        <i class="fas fa-building text-4xl mb-2"></i>
+                                        <p>Premium Office Space</p>
+                                    </div>
+                                </div>
+                                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent text-white p-4">
+                                    <h4 class="font-bold">2,500 sq ft Office</h4>
+                                    <p class="text-sm">Gurgaon Cyber City</p>
+                                    <p class="text-lg font-bold">₹1.2L/month</p>
+                                </div>
+                                <div class="absolute top-4 right-4 bg-green-500 text-white px-2 py-1 rounded-full text-xs">
+                                    95% Match
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="flex justify-center space-x-8 p-6 bg-gray-50">
+                            <button class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center text-white shadow-lg">
+                                <i class="fas fa-times text-2xl"></i>
+                            </button>
+                            <button class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center text-white shadow-lg">
+                                <i class="fas fa-info text-2xl"></i>
+                            </button>
+                            <button class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center text-white shadow-lg">
+                                <i class="fas fa-heart text-2xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="hero-stats">
-                <div class="stat-card">
-                    <span class="stat-number">2,000+</span>
-                    <div class="stat-label">Properties Listed</div>
+                <!-- Phone 2 - Chat Interface -->
+                <div class="phone-mockup mb-8">
+                    <div class="phone-screen">
+                        <!-- Status Bar -->
+                        <div class="bg-black text-white text-xs py-1 px-4 flex justify-between">
+                            <span>9:41</span>
+                            <div class="flex space-x-1">
+                                <i class="fas fa-signal"></i>
+                                <i class="fas fa-wifi"></i>
+                                <i class="fas fa-battery-three-quarters"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Chat Header -->
+                        <div class="bg-blue-600 text-white p-4 flex items-center space-x-3">
+                            <i class="fas fa-arrow-left"></i>
+                            <div class="flex-1">
+                                <h3 class="font-bold">Rajesh Kumar</h3>
+                                <p class="text-xs opacity-75">Commercial Agent • Online</p>
+                            </div>
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        
+                        <!-- Chat Messages -->
+                        <div class="flex-1 p-4 space-y-4 bg-gray-100">
+                            <div class="flex">
+                                <div class="bg-white rounded-lg p-3 max-w-xs shadow-sm">
+                                    <p class="text-sm">Hi! I saw you're interested in the Cyber City office space. I can arrange a viewing today.</p>
+                                    <p class="text-xs text-gray-500 mt-1">2:30 PM</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex justify-end">
+                                <div class="bg-blue-500 text-white rounded-lg p-3 max-w-xs">
+                                    <p class="text-sm">Yes, that would be great! What time works best?</p>
+                                    <p class="text-xs opacity-75 mt-1">2:32 PM</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex">
+                                <div class="bg-white rounded-lg p-3 max-w-xs shadow-sm">
+                                    <p class="text-sm">How about 4 PM? The property also has great parking and fiber connectivity.</p>
+                                    <p class="text-xs text-gray-500 mt-1">2:33 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Message Input -->
+                        <div class="p-4 bg-white border-t">
+                            <div class="flex items-center space-x-3">
+                                <div class="flex-1 bg-gray-100 rounded-full px-4 py-2">
+                                    <input type="text" placeholder="Type a message..." class="bg-transparent w-full outline-none text-sm">
+                                </div>
+                                <button class="bg-blue-500 text-white rounded-full w-10 h-10 flex items-center justify-center">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="stat-card">
-                    <span class="stat-number">500+</span>
-                    <div class="stat-label">Active Agents</div>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">89%</span>
-                    <div class="stat-label">Match Accuracy</div>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">24/7</span>
-                    <div class="stat-label">API Uptime</div>
+
+                <!-- Phone 3 - Property Details -->
+                <div class="phone-mockup mb-8">
+                    <div class="phone-screen">
+                        <!-- Status Bar -->
+                        <div class="bg-black text-white text-xs py-1 px-4 flex justify-between">
+                            <span>9:41</span>
+                            <div class="flex space-x-1">
+                                <i class="fas fa-signal"></i>
+                                <i class="fas fa-wifi"></i>
+                                <i class="fas fa-battery-three-quarters"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Property Image -->
+                        <div class="relative h-48">
+                            <div class="property-image h-full">
+                                <div class="text-center">
+                                    <i class="fas fa-building text-4xl mb-2"></i>
+                                    <p>Office Building</p>
+                                </div>
+                            </div>
+                            <button class="absolute top-4 left-4 bg-black bg-opacity-50 text-white rounded-full w-10 h-10 flex items-center justify-center">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                            <button class="absolute top-4 right-4 bg-black bg-opacity-50 text-white rounded-full w-10 h-10 flex items-center justify-center">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- Property Info -->
+                        <div class="p-4 space-y-4">
+                            <div>
+                                <h3 class="text-xl font-bold">Premium Office Space</h3>
+                                <p class="text-gray-600">Cyber City, Gurgaon</p>
+                                <p class="text-2xl font-bold text-blue-600">₹1.2L/month</p>
+                            </div>
+                            
+                            <div class="grid grid-cols-3 gap-4 text-center">
+                                <div>
+                                    <p class="text-2xl font-bold">2,500</p>
+                                    <p class="text-xs text-gray-600">sq ft</p>
+                                </div>
+                                <div>
+                                    <p class="text-2xl font-bold">25</p>
+                                    <p class="text-xs text-gray-600">workstations</p>
+                                </div>
+                                <div>
+                                    <p class="text-2xl font-bold">2</p>
+                                    <p class="text-xs text-gray-600">meeting rooms</p>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas fa-wifi text-blue-500"></i>
+                                    <span class="text-sm">High-speed fiber internet</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas fa-car text-blue-500"></i>
+                                    <span class="text-sm">Dedicated parking</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas fa-shield-alt text-blue-500"></i>
+                                    <span class="text-sm">24/7 security</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="p-4 space-y-3">
+                            <button class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold">Contact Agent</button>
+                            <button class="w-full border border-blue-600 text-blue-600 py-3 rounded-lg font-semibold">Schedule Tour</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
-                <button class="btn btn-primary" onclick="showDeveloperDemo()">
-                    <i class="fas fa-code"></i>
-                    Developer API Demo
-                </button>
-                <button class="btn btn-outline" onclick="showAgentDemo()">
-                    <i class="fas fa-user-tie"></i>
-                    Agent Dashboard Demo
-                </button>
-            </div>
-        </section>
-
-        <div class="dashboard-container">
-            <aside class="sidebar">
-                <div class="user-profile">
-                    <div class="avatar">RK</div>
-                    <div class="user-name">Rajesh Kumar</div>
-                    <div class="user-role">Senior Property Agent</div>
-                    <div class="agent-tier">Gold Tier</div>
-                </div>
-
-                <ul class="sidebar-menu">
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link active">
-                            <i class="fas fa-home"></i>
-                            Dashboard
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="fas fa-search"></i>
-                            Property Search
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="fas fa-users"></i>
-                            My Leads
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="fas fa-building"></i>
-                            My Properties
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="fas fa-chart-line"></i>
-                            Analytics
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="fas fa-cog"></i>
-                            API Settings
-                        </a>
-                    </li>
-                </ul>
-            </aside>
-
-            <main class="main-content">
-                <div class="dashboard-metrics">
-                    <div class="metric-card">
-                        <span class="metric-value">₹12.5L</span>
-                        <div class="metric-label">This Month's Commission</div>
-                        <div class="metric-change positive">+23% from last month</div>
-                    </div>
-                    <div class="metric-card">
-                        <span class="metric-value">47</span>
-                        <div class="metric-label">Active Leads</div>
-                        <div class="metric-change positive">+8 new today</div>
-                    </div>
-                    <div class="metric-card">
-                        <span class="metric-value">92%</span>
-                        <div class="metric-label">Response Rate</div>
-                        <div class="metric-change positive">+5% this week</div>
-                    </div>
-                    <div class="metric-card">
-                        <span class="metric-value">156</span>
-                        <div class="metric-label">Properties Claimed</div>
-                        <div class="metric-change positive">+12 this month</div>
-                    </div>
-                </div>
-
-                <section class="search-section">
-                    <div class="section-header">
-                        <h2 class="section-title">AI Property Search</h2>
-                        <div style="display: flex; gap: 0.5rem;">
-                            <button class="btn btn-outline" onclick="showAPICode()">
-                                <i class="fas fa-code"></i>
-                                API Code
-                            </button>
-                            <button class="btn btn-primary" onclick="saveSearch()">
-                                <i class="fas fa-save"></i>
-                                Save Search
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="filter-tabs">
-                        <button class="filter-tab active" data-type="traditional">
-                            Traditional Commercial
-                        </button>
-                        <button class="filter-tab" data-type="coworking">
-                            Co-working Spaces
-                        </button>
-                        <button class="filter-tab" data-type="independent">
-                            Independent Offices
-                        </button>
-                    </div>
-
-                    <div class="search-form">
-                        <div class="form-group">
-                            <input type="text" class="form-input" placeholder="Location (e.g., Gurgaon, Mumbai)" value="Cyber City, Gurgaon">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-input" placeholder="Size requirement" value="2000-5000 sq ft">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-input" placeholder="Budget range" value="₹1L-3L/month">
-                        </div>
-                        <div class="form-group">
-                            <select class="form-input">
-                                <option>Lease Duration</option>
-                                <option>3-5 years</option>
-                                <option>5-9 years</option>
-                                <option>Flexible terms</option>
-                            </select>
-                        </div>
-                        <button class="search-btn" onclick="performSearch()">
-                            <i class="fas fa-search"></i>
-                            AI-Powered Search
-                        </button>
-                    </div>
-                </section>
-
-                <section class="search-section">
-                    <div class="section-header">
-                        <h2 class="section-title">Matched Properties</h2>
-                        <div style="display: flex; gap: 0.5rem; align-items: center;">
-                            <span style="color: var(--text-secondary); font-size: 0.9rem;">Sort by:</span>
-                            <select class="form-input" style="width: auto; padding: 0.5rem 1rem;">
-                                <option>AI Match Score</option>
-                                <option>Price: Low to High</option>
-                                <option>Price: High to Low</option>
-                                <option>Size</option>
-                                <option>Date Added</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="properties-grid">
-                        <div class="property-card" onclick="showPropertyDetails(this, 'Prime Tower Cyber City')">
-                            <div class="property-image">
-                                <div class="property-badges">
-                                    <div class="property-badge">Traditional</div>
-                                    <div class="property-badge">Class A</div>
-                                </div>
-                                <div class="property-actions">
-                                    <button class="action-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
-                                        <i class="fas fa-heart"></i>
-                                    </button>
-                                    <button class="action-btn" onclick="event.stopPropagation(); shareProperty(this)">
-                                        <i class="fas fa-share"></i>
-                                    </button>
-                                </div>
-                                <div class="ai-score">94% Match</div>
-                            </div>
-                            <div class="property-content">
-                                <h3 class="property-title">Prime Tower - Cyber City</h3>
-                                <div class="property-location">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    DLF Cyber City, Gurgaon
-                                </div>
-                                <div class="property-details">
-                                    <div class="detail-item">
-                                        <i class="fas fa-expand detail-icon"></i>
-                                        3,200 sq ft
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-car detail-icon"></i>
-                                        25 Parking
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-calendar detail-icon"></i>
-                                        3-9 years
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-wifi detail-icon"></i>
-                                        High-speed
-                                    </div>
-                                </div>
-                                <div class="property-price">₹1,85,000/month</div>
-                                <div class="property-footer">
-                                    <div class="agent-info">
-                                        <div class="agent-avatar">SK</div>
-                                        <div class="agent-name">Sandeep Kumar</div>
-                                    </div>
-                                    <button class="contact-btn" onclick="event.stopPropagation(); contactAgent(this)">
-                                        Contact Agent
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="property-card" onclick="showPropertyDetails(this, 'Modern Coworking Hub')">
-                            <div class="property-image">
-                                <div class="property-badges">
-                                    <div class="property-badge">Co-working</div>
-                                    <div class="property-badge">Flexible</div>
-                                </div>
-                                <div class="property-actions">
-                                    <button class="action-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
-                                        <i class="fas fa-heart"></i>
-                                    </button>
-                                    <button class="action-btn" onclick="event.stopPropagation(); shareProperty(this)">
-                                        <i class="fas fa-share"></i>
-                                    </button>
-                                </div>
-                                <div class="ai-score">87% Match</div>
-                            </div>
-                            <div class="property-content">
-                                <h3 class="property-title">Workspace+ Modern Hub</h3>
-                                <div class="property-location">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    Sector 44, Gurgaon
-                                </div>
-                                <div class="property-details">
-                                    <div class="detail-item">
-                                        <i class="fas fa-users detail-icon"></i>
-                                        50 Seats
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-coffee detail-icon"></i>
-                                        Café Included
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-clock detail-icon"></i>
-                                        24/7 Access
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-shield-alt detail-icon"></i>
-                                        Secure
-                                    </div>
-                                </div>
-                                <div class="property-price">₹15,000/seat/month</div>
-                                <div class="property-footer">
-                                    <div class="agent-info">
-                                        <div class="agent-avatar">AM</div>
-                                        <div class="agent-name">Amit Malhotra</div>
-                                    </div>
-                                    <button class="contact-btn" onclick="event.stopPropagation(); contactAgent(this)">
-                                        Contact Agent
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="property-card" onclick="showPropertyDetails(this, 'Executive Office Suite')">
-                            <div class="property-image">
-                                <div class="property-badges">
-                                    <div class="property-badge">Independent</div>
-                                    <div class="property-badge">Luxury</div>
-                                </div>
-                                <div class="property-actions">
-                                    <button class="action-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
-                                        <i class="fas fa-heart"></i>
-                                    </button>
-                                    <button class="action-btn" onclick="event.stopPropagation(); shareProperty(this)">
-                                        <i class="fas fa-share"></i>
-                                    </button>
-                                </div>
-                                <div class="ai-score">91% Match</div>
-                            </div>
-                            <div class="property-content">
-                                <h3 class="property-title">Executive Office Suite</h3>
-                                <div class="property-location">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    Golf Course Road, Gurgaon
-                                </div>
-                                <div class="property-details">
-                                    <div class="detail-item">
-                                        <i class="fas fa-expand detail-icon"></i>
-                                        2,800 sq ft
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-building detail-icon"></i>
-                                        Private Floor
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-car detail-icon"></i>
-                                        20 Parking
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-leaf detail-icon"></i>
-                                        Green Certified
-                                    </div>
-                                </div>
-                                <div class="property-price">₹2,25,000/month</div>
-                                <div class="property-footer">
-                                    <div class="agent-info">
-                                        <div class="agent-avatar">PS</div>
-                                        <div class="agent-name">Priya Sharma</div>
-                                    </div>
-                                    <button class="contact-btn" onclick="event.stopPropagation(); contactAgent(this)">
-                                        Contact Agent
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="property-card" onclick="showPropertyDetails(this, 'Tech Park Office')">
-                            <div class="property-image">
-                                <div class="property-badges">
-                                    <div class="property-badge">Traditional</div>
-                                    <div class="property-badge">IT Park</div>
-                                </div>
-                                <div class="property-actions">
-                                    <button class="action-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
-                                        <i class="fas fa-heart"></i>
-                                    </button>
-                                    <button class="action-btn" onclick="event.stopPropagation(); shareProperty(this)">
-                                        <i class="fas fa-share"></i>
-                                    </button>
-                                </div>
-                                <div class="ai-score">89% Match</div>
-                            </div>
-                            <div class="property-content">
-                                <h3 class="property-title">Udyog Vihar Tech Office</h3>
-                                <div class="property-location">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    Udyog Vihar Phase 4, Gurgaon
-                                </div>
-                                <div class="property-details">
-                                    <div class="detail-item">
-                                        <i class="fas fa-expand detail-icon"></i>
-                                        1,950 sq ft
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-subway detail-icon"></i>
-                                        Metro 500m
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-utensils detail-icon"></i>
-                                        Food Court
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-shield-alt detail-icon"></i>
-                                        24/7 Security
-                                    </div>
-                                </div>
-                                <div class="property-price">₹98,000/month</div>
-                                <div class="property-footer">
-                                    <div class="agent-info">
-                                        <div class="agent-avatar">VG</div>
-                                        <div class="agent-name">Vikash Gupta</div>
-                                    </div>
-                                    <button class="contact-btn" onclick="event.stopPropagation(); contactAgent(this)">
-                                        Contact Agent
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="leads-section">
-                    <div class="section-header">
-                        <h2 class="section-title">Priority Leads Queue</h2>
-                        <div style="display: flex; gap: 0.5rem;">
-                            <button class="btn btn-outline" onclick="exportLeads()">
-                                <i class="fas fa-download"></i>
-                                Export
-                            </button>
-                            <button class="btn btn-primary" onclick="bulkAction()">
-                                <i class="fas fa-tasks"></i>
-                                Bulk Action
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="leads-grid">
-                        <div class="lead-card">
-                            <div class="lead-header">
-                                <div>
-                                    <h4 style="color: var(--text-primary); font-weight: 700;">TechCorp Solutions Pvt Ltd</h4>
-                                    <p style="color: var(--text-secondary); font-size: 0.875rem; margin-top: 0.25rem;">Looking for office space</p>
-                                </div>
-                                <div class="lead-score">Score: 94</div>
-                            </div>
-                            <div class="lead-details">
-                                <div class="detail-item">
-                                    <i class="fas fa-building detail-icon"></i>
-                                    4,500 sq ft required
-                                </div>
-                                <div class="detail-item">
-                                    <i class="fas fa-map-marker-alt detail-icon"></i>
-                                    Cyber City preferred
-                                </div>
-                                <div class="detail-item">
-                                    <i class="fas fa-rupee-sign detail-icon"></i>
-                                    ₹2.5L-4L budget
-                                </div>
-                                <div class="detail-item">
-                                    <i class="fas fa-clock detail-icon"></i>
-                                    Urgent (2 weeks)
-                                </div>
-                            </div>
-                            <div class="lead-actions">
-                                <button class="btn btn-primary" onclick="contactLead(this)">
-                                    <i class="fas fa-phone"></i>
-                                    Contact
-                                </button>
-                                <button class="btn btn-outline" onclick="scheduleMeeting(this)">
-                                    <i class="fas fa-calendar"></i>
-                                    Schedule
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="lead-card">
-                            <div class="lead-header">
-                                <div>
-                                    <h4 style="color: var(--text-primary); font-weight: 700;">Creative Digital Agency</h4>
-                                    <p style="color: var(--text-secondary); font-size: 0.875rem; margin-top: 0.25rem;">Co-working space inquiry</p>
-                                </div>
-                                <div class="lead-score">Score: 87</div>
-                            </div>
-                            <div class="lead-details">
-                                <div class="detail-item">
-                                    <i class="fas fa-users detail-icon"></i>
-                                    25-30 team members
-                                </div>
-                                <div class="detail-item">
-                                    <i class="fas fa-map-marker-alt detail-icon"></i>
-                                    Sector 44/48
-                                </div>
-                                <div class="detail-item">
-                                    <i class="fas fa-rupee-sign detail-icon"></i>
-                                    ₹12K-18K per seat
-                                </div>
-                                <div class="detail-item">
-                                    <i class="fas fa-calendar detail-icon"></i>
-                                    Flexible timing
-                                </div>
-                            </div>
-                            <div class="lead-actions">
-                                <button class="btn btn-primary" onclick="contactLead(this)">
-                                    <i class="fas fa-phone"></i>
-                                    Contact
-                                </button>
-                                <button class="btn btn-outline" onclick="sendProposal(this)">
-                                    <i class="fas fa-file-alt"></i>
-                                    Send Proposal
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="lead-card">
-                            <div class="lead-header">
-                                <div>
-                                    <h4 style="color: var(--text-primary); font-weight: 700;">GlobalTech Enterprises</h4>
-                                    <p style="color: var(--text-secondary); font-size: 0.875rem; margin-top: 0.25rem;">Independent office requirement</p>
-                                </div>
-                                <div class="lead-score">Score: 91</div>
-                            </div>
-                            <div class="lead-details">
-                                <div class="detail-item">
-                                    <i class="fas fa-building detail-icon"></i>
-                                    6,000-8,000 sq ft
-                                </div>
-                                <div class="detail-item">
-                                    <i class="fas fa-map-marker-alt detail-icon"></i>
-                                    Golf Course Road
-                                </div>
-                                <div class="detail-item">
-                                    <i class="fas fa-rupee-sign detail-icon"></i>
-                                    ₹5L-8L budget
-                                </div>
-                                <div class="detail-item">
-                                    <i class="fas fa-handshake detail-icon"></i>
-                                    Long-term lease
-                                </div>
-                            </div>
-                            <div class="lead-actions">
-                                <button class="btn btn-primary" onclick="contactLead(this)">
-                                    <i class="fas fa-phone"></i>
-                                    Contact
-                                </button>
-                                <button class="btn btn-outline" onclick="viewDetails(this)">
-                                    <i class="fas fa-eye"></i>
-                                    View Details
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </main>
         </div>
-    </main>
+    </section>
+
+    <!-- Desktop Dashboard Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-4 text-gray-800">Intelligent Agent Dashboard</h2>
+            <p class="text-xl text-center text-gray-600 mb-12">Manage leads, properties, and deals with AI-powered insights</p>
+            
+            <!-- Dashboard Mockup -->
+            <div class="bg-white rounded-xl shadow-2xl overflow-hidden">
+                <!-- Dashboard Header -->
+                <div class="bg-blue-600 text-white p-6">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h3 class="text-2xl font-bold">Agent Dashboard</h3>
+                            <p class="opacity-75">Welcome back, Rajesh Kumar</p>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="text-right">
+                                <p class="text-sm opacity-75">Today's Performance</p>
+                                <p class="text-xl font-bold">8 Leads • 3 Tours</p>
+                            </div>
+                            <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dashboard Navigation -->
+                <div class="border-b bg-gray-50 px-6">
+                    <div class="flex space-x-0">
+                        <button class="nav-tab active">Overview</button>
+                        <button class="nav-tab">Leads</button>
+                        <button class="nav-tab">Properties</button>
+                        <button class="nav-tab">Deals</button>
+                        <button class="nav-tab">Analytics</button>
+                    </div>
+                </div>
+                
+                <!-- Dashboard Content -->
+                <div class="p-6">
+                    <!-- Key Metrics -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                        <div class="metric-card">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <p class="text-sm opacity-75">Active Leads</p>
+                                    <p class="text-3xl font-bold">24</p>
+                                </div>
+                                <i class="fas fa-users text-2xl opacity-75"></i>
+                            </div>
+                            <p class="text-sm opacity-75">+12% from last week</p>
+                        </div>
+                        
+                        <div class="metric-card">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <p class="text-sm opacity-75">Properties Listed</p>
+                                    <p class="text-3xl font-bold">156</p>
+                                </div>
+                                <i class="fas fa-building text-2xl opacity-75"></i>
+                            </div>
+                            <p class="text-sm opacity-75">+8 new this week</p>
+                        </div>
+                        
+                        <div class="metric-card">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <p class="text-sm opacity-75">Deal Pipeline</p>
+                                    <p class="text-3xl font-bold">₹2.8Cr</p>
+                                </div>
+                                <i class="fas fa-chart-line text-2xl opacity-75"></i>
+                            </div>
+                            <p class="text-sm opacity-75">7 deals in progress</p>
+                        </div>
+                        
+                        <div class="metric-card">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <p class="text-sm opacity-75">Conversion Rate</p>
+                                    <p class="text-3xl font-bold">28%</p>
+                                </div>
+                                <i class="fas fa-percentage text-2xl opacity-75"></i>
+                            </div>
+                            <p class="text-sm opacity-75">Above average</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Activity & Priority Leads -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <!-- Priority Leads -->
+                        <div class="dashboard-card p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <h4 class="text-xl font-bold">Priority Leads</h4>
+                                <span class="bg-red-100 text-red-600 px-2 py-1 rounded-full text-xs font-semibold">AI Sorted</span>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-center space-x-4 p-3 bg-green-50 border border-green-200 rounded-lg">
+                                    <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">
+                                        AS
+                                    </div>
+                                    <div class="flex-1">
+                                        <h5 class="font-semibold">Amit Sharma</h5>
+                                        <p class="text-sm text-gray-600">Looking for 3,000 sq ft office in Gurgaon</p>
+                                        <p class="text-xs text-green-600 font-semibold">92% Match Score</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-sm font-semibold">₹2.5L budget</p>
+                                        <p class="text-xs text-gray-500">2 hours ago</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center space-x-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                                    <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">
+                                        PK
+                                    </div>
+                                    <div class="flex-1">
+                                        <h5 class="font-semibold">Priya Kapoor</h5>
+                                        <p class="text-sm text-gray-600">Co-working space for 15 people</p>
+                                        <p class="text-xs text-blue-600 font-semibold">87% Match Score</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-sm font-semibold">₹45K budget</p>
+                                        <p class="text-xs text-gray-500">4 hours ago</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center space-x-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                                    <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold">
+                                        RV
+                                    </div>
+                                    <div class="flex-1">
+                                        <h5 class="font-semibold">Rohit Verma</h5>
+                                        <p class="text-sm text-gray-600">Warehouse space in Noida</p>
+                                        <p class="text-xs text-yellow-600 font-semibold">76% Match Score</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-sm font-semibold">₹1.8L budget</p>
+                                        <p class="text-xs text-gray-500">1 day ago</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Deal Pipeline -->
+                        <div class="dashboard-card p-6">
+                            <h4 class="text-xl font-bold mb-4">Deal Pipeline</h4>
+                            
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center p-3 border border-gray-200 rounded-lg">
+                                    <div>
+                                        <h5 class="font-semibold">Tech Solutions Office</h5>
+                                        <p class="text-sm text-gray-600">2,500 sq ft • Cyber City</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-sm font-semibold">₹1.2L/month</p>
+                                        <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">Negotiation</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex justify-between items-center p-3 border border-gray-200 rounded-lg">
+                                    <div>
+                                        <h5 class="font-semibold">StartupHub Co-working</h5>
+                                        <p class="text-sm text-gray-600">20 seats • Sector 62</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-sm font-semibold">₹60K/month</p>
+                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Closing</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex justify-between items-center p-3 border border-gray-200 rounded-lg">
+                                    <div>
+                                        <h5 class="font-semibold">Manufacturing Unit</h5>
+                                        <p class="text-sm text-gray-600">10,000 sq ft • Industrial Area</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-sm font-semibold">₹3.5L/month</p>
+                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">Viewing</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Analytics Dashboard -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-4 text-gray-800">Advanced Analytics & Insights</h2>
+            <p class="text-xl text-center text-gray-600 mb-12">Data-driven decisions for commercial real estate success</p>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Revenue Chart -->
+                <div class="dashboard-card p-6">
+                    <h4 class="text-xl font-bold mb-4">Monthly Revenue Trend</h4>
+                    <canvas id="revenueChart" width="400" height="200"></canvas>
+                </div>
+                
+                <!-- Property Types Distribution -->
+                <div class="dashboard-card p-6">
+                    <h4 class="text-xl font-bold mb-4">Property Type Distribution</h4>
+                    <canvas id="propertyChart" width="400" height="200"></canvas>
+                </div>
+                
+                <!-- Lead Conversion Funnel -->
+                <div class="dashboard-card p-6">
+                    <h4 class="text-xl font-bold mb-4">Lead Conversion Funnel</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span>Total Leads</span>
+                            <div class="flex items-center space-x-2">
+                                <div class="w-32 bg-gray-200 rounded-full h-3">
+                                    <div class="bg-blue-600 h-3 rounded-full w-full"></div>
+                                </div>
+                                <span class="font-semibold">1,250</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span>Qualified Leads</span>
+                            <div class="flex items-center space-x-2">
+                                <div class="w-32 bg-gray-200 rounded-full h-3">
+                                    <div class="bg-blue-600 h-3 rounded-full" style="width: 75%"></div>
+                                </div>
+                                <span class="font-semibold">938</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span>Property Views</span>
+                            <div class="flex items-center space-x-2">
+                                <div class="w-32 bg-gray-200 rounded-full h-3">
+                                    <div class="bg-blue-600 h-3 rounded-full" style="width: 60%"></div>
+                                </div>
+                                <span class="font-semibold">750</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span>Tours Scheduled</span>
+                            <div class="flex items-center space-x-2">
+                                <div class="w-32 bg-gray-200 rounded-full h-3">
+                                    <div class="bg-blue-600 h-3 rounded-full" style="width: 40%"></div>
+                                </div>
+                                <span class="font-semibold">500</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span>Deals Closed</span>
+                            <div class="flex items-center space-x-2">
+                                <div class="w-32 bg-gray-200 rounded-full h-3">
+                                    <div class="bg-green-600 h-3 rounded-full" style="width: 25%"></div>
+                                </div>
+                                <span class="font-semibold">312</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Top Performing Areas -->
+                <div class="dashboard-card p-6">
+                    <h4 class="text-xl font-bold mb-4">Top Performing Areas</h4>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center p-3 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg">
+                            <div>
+                                <h5 class="font-semibold">Cyber City, Gurgaon</h5>
+                                <p class="text-sm text-gray-600">456 listings • High demand</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm font-semibold text-green-600">+15%</p>
+                                <p class="text-xs text-gray-500">vs last month</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center p-3 bg-gradient-to-r from-green-50 to-green-100 rounded-lg">
+                            <div>
+                                <h5 class="font-semibold">Sector 62, Noida</h5>
+                                <p class="text-sm text-gray-600">342 listings • Growing market</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm font-semibold text-green-600">+12%</p>
+                                <p class="text-xs text-gray-500">vs last month</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center p-3 bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg">
+                            <div>
+                                <h5 class="font-semibold">Connaught Place, Delhi</h5>
+                                <p class="text-sm text-gray-600">234 listings • Premium segment</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm font-semibold text-green-600">+8%</p>
+                                <p class="text-xs text-gray-500">vs last month</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Journey Workflow -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-4 text-gray-800">Complete Transaction Workflow</h2>
+            <p class="text-xl text-center text-gray-600 mb-12">From discovery to deal closure in 8 simple steps</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Step 1 -->
+                <div class="workflow-step active">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                        1
+                    </div>
+                    <h4 class="font-bold mb-2">Discovery</h4>
+                    <p class="text-sm text-gray-600">AI-powered property matching based on business requirements</p>
+                    <div class="workflow-arrow">→</div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="workflow-step">
+                    <div class="w-16 h-16 bg-gray-400 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                        2
+                    </div>
+                    <h4 class="font-bold mb-2">Match & Connect</h4>
+                    <p class="text-sm text-gray-600">Connect with verified agents through priority lead system</p>
+                    <div class="workflow-arrow">→</div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="workflow-step">
+                    <div class="w-16 h-16 bg-gray-400 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                        3
+                    </div>
+                    <h4 class="font-bold mb-2">Property Tour</h4>
+                    <p class="text-sm text-gray-600">Schedule and conduct virtual or physical property tours</p>
+                    <div class="workflow-arrow">→</div>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="workflow-step">
+                    <div class="w-16 h-16 bg-gray-400 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                        4
+                    </div>
+                    <h4 class="font-bold mb-2">Due Diligence</h4>
+                    <p class="text-sm text-gray-600">AI-powered document verification and legal checks</p>
+                </div>
+                
+                <!-- Step 5 -->
+                <div class="workflow-step">
+                    <div class="w-16 h-16 bg-gray-400 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                        5
+                    </div>
+                    <h4 class="font-bold mb-2">Negotiation</h4>
+                    <p class="text-sm text-gray-600">Smart contract generation and negotiation support</p>
+                    <div class="workflow-arrow">→</div>
+                </div>
+                
+                <!-- Step 6 -->
+                <div class="workflow-step">
+                    <div class="w-16 h-16 bg-gray-400 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                        6
+                    </div>
+                    <h4 class="font-bold mb-2">Financial Services</h4>
+                    <p class="text-sm text-gray-600">Loan processing, insurance, and financial planning</p>
+                    <div class="workflow-arrow">→</div>
+                </div>
+                
+                <!-- Step 7 -->
+                <div class="workflow-step">
+                    <div class="w-16 h-16 bg-gray-400 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                        7
+                    </div>
+                    <h4 class="font-bold mb-2">Legal Documentation</h4>
+                    <p class="text-sm text-gray-600">Automated legal document generation and signing</p>
+                    <div class="workflow-arrow">→</div>
+                </div>
+                
+                <!-- Step 8 -->
+                <div class="workflow-step">
+                    <div class="w-16 h-16 bg-gray-400 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                        8
+                    </div>
+                    <h4 class="font-bold mb-2">Deal Closure</h4>
+                    <p class="text-sm text-gray-600">Final handover, key transfer, and relationship management</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Highlights -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-4 text-gray-800">Revolutionary Features</h2>
+            <p class="text-xl text-center text-gray-600 mb-12">Experience the future of commercial real estate</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="dashboard-card p-8 text-center">
+                    <div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-6">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">AI-Powered Matching</h4>
+                    <p class="text-gray-600">Advanced algorithms analyze 50+ parameters to find perfect property matches</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="dashboard-card p-8 text-center">
+                    <div class="w-20 h-20 bg-gradient-to-r from-green-500 to-teal-600 rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-6">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">Mobile-First Design</h4>
+                    <p class="text-gray-600">Intuitive swipe interface optimized for busy professionals on the go</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="dashboard-card p-8 text-center">
+                    <div class="w-20 h-20 bg-gradient-to-r from-orange-500 to-red-600 rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-6">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">Real-Time Analytics</h4>
+                    <p class="text-gray-600">Comprehensive insights and performance metrics for data-driven decisions</p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="dashboard-card p-8 text-center">
+                    <div class="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-6">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">Priority Lead System</h4>
+                    <p class="text-gray-600">Fair and intelligent lead distribution based on agent performance and expertise</p>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="dashboard-card p-8 text-center">
+                    <div class="w-20 h-20 bg-gradient-to-r from-indigo-500 to-blue-600 rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-6">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">Automated Documentation</h4>
+                    <p class="text-gray-600">AI-generated legal documents and streamlined paperwork processes</p>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="dashboard-card p-8 text-center">
+                    <div class="w-20 h-20 bg-gradient-to-r from-teal-500 to-green-600 rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-6">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">Integrated Communication</h4>
+                    <p class="text-gray-600">Seamless chat, video calls, and WhatsApp integration for instant communication</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="gradient-bg text-white py-16">
+        <div class="max-w-4xl mx-auto text-center px-6">
+            <h2 class="text-4xl font-bold mb-6">Ready to Transform Commercial Real Estate?</h2>
+            <p class="text-xl mb-8 opacity-90">Join the revolution and experience the future of property discovery and deal management</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="btn-primary text-lg px-8 py-4">Get Early Access</button>
+                <button class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-all">Watch Demo</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h3 class="text-2xl font-bold mb-4">SpaceMatch 2.0</h3>
+            <p class="text-gray-400 mb-6">Revolutionizing Commercial Real Estate Discovery</p>
+            <div class="flex justify-center space-x-6 text-2xl">
+                <i class="fab fa-twitter hover:text-blue-400 cursor-pointer"></i>
+                <i class="fab fa-linkedin hover:text-blue-600 cursor-pointer"></i>
+                <i class="fab fa-facebook hover:text-blue-500 cursor-pointer"></i>
+                <i class="fas fa-envelope hover:text-green-400 cursor-pointer"></i>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        // Property search functionality
-        function performSearch() {
-            const btn = document.querySelector('.search-btn');
-            const originalContent = btn.innerHTML;
-            
-            btn.innerHTML = '<div class="loading-state"><div class="spinner"></div>AI Processing Search...</div>';
-            btn.disabled = true;
-            
-            setTimeout(() => {
-                btn.innerHTML = '<i class="fas fa-check"></i> Found 24 Properties';
-                btn.style.background = 'linear-gradient(135deg, var(--success-green), #059669)';
-                
-                showNotification('AI found 24 matching properties with high accuracy scores!');
-                
-                // Add pulse effect to property cards
-                document.querySelectorAll('.property-card').forEach(card => {
-                    card.classList.add('pulse');
-                    setTimeout(() => card.classList.remove('pulse'), 2000);
-                });
-                
-                setTimeout(() => {
-                    btn.innerHTML = originalContent;
-                    btn.style.background = 'linear-gradient(135deg, var(--accent-purple), var(--accent-cyan))';
-                    btn.disabled = false;
-                }, 3000);
-            }, 2000);
-        }
-
-        // Property type filter functionality
-        document.querySelectorAll('.filter-tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-                
-                const type = this.dataset.type;
-                updateSearchForm(type);
-                showNotification(`Switched to ${type} property search`);
-            });
-        });
-
-        function updateSearchForm(type) {
-            const inputs = document.querySelectorAll('.form-input');
-            
-            switch(type) {
-                case 'traditional':
-                    inputs[1].placeholder = 'Office space size (sq ft)';
-                    inputs[1].value = '2000-5000 sq ft';
-                    inputs[2].placeholder = 'Monthly budget range';
-                    inputs[2].value = '₹1L-3L/month';
-                    break;
-                case 'coworking':
-                    inputs[1].placeholder = 'Number of seats needed';
-                    inputs[1].value = '20-50 seats';
-                    inputs[2].placeholder = 'Budget per seat/month';
-                    inputs[2].value = '₹12K-18K/seat';
-                    break;
-                case 'independent':
-                    inputs[1].placeholder = 'Private office size';
-                    inputs[1].value = '3000-6000 sq ft';
-                    inputs[2].placeholder = 'Investment budget';
-                    inputs[2].value = '₹3L-8L/month';
-                    break;
-            }
-        }
-
-        // Property interaction functions
-        function showPropertyDetails(card, propertyName) {
-            card.style.transform = 'translateY(-8px) scale(1.02)';
-            setTimeout(() => {
-                card.style.transform = '';
-            }, 300);
-            
-            showNotification(`Viewing ${propertyName} - Agent will be notified of your interest`);
-        }
-
-        function toggleFavorite(btn) {
-            const heart = btn.querySelector('i');
-            if (heart.classList.contains('fas')) {
-                heart.style.color = '#ef4444';
-                btn.style.background = 'rgba(239, 68, 68, 0.2)';
-                showNotification('Property saved to favorites!');
-            }
-        }
-
-        function shareProperty(btn) {
-            showNotification('Property link copied to clipboard!');
-        }
-
-        function contactAgent(btn) {
-            btn.innerHTML = '<i class="fas fa-check"></i> Contacted';
-            btn.style.background = '#10b981';
-            btn.disabled = true;
-            
-            showNotification('WhatsApp message sent to agent. Expected response within 1 hour.');
-            
-            setTimeout(() => {
-                btn.innerHTML = 'Contact Agent';
-                btn.style.background = '#8b5cf6';
-                btn.disabled = false;
-            }, 5000);
-        }
-
-        // Lead management functions
-        function contactLead(btn) {
-            const card = btn.closest('.lead-card');
-            card.style.border = '1px solid #10b981';
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Calling...';
-            
-            setTimeout(() => {
-                btn.innerHTML = '<i class="fas fa-check"></i> Connected';
-                btn.style.background = '#10b981';
-                showNotification('Call connected successfully! Lead is interested.');
-                
-                setTimeout(() => {
-                    card.style.border = '1px solid rgba(248, 250, 252, 0.08)';
-                    btn.innerHTML = '<i class="fas fa-phone"></i> Contact';
-                    btn.style.background = '#8b5cf6';
-                }, 3000);
-            }, 2000);
-        }
-
-        function scheduleMeeting(btn) {
-            showNotification('Meeting scheduled for tomorrow 2:00 PM at property location');
-        }
-
-        function sendProposal(btn) {
-            btn.innerHTML = '<i class="fas fa-paper-plane"></i> Sent';
-            btn.disabled = true;
-            showNotification('Proposal sent via email with property recommendations');
-            
-            setTimeout(() => {
-                btn.innerHTML = '<i class="fas fa-file-alt"></i> Send Proposal';
-                btn.disabled = false;
-            }, 3000);
-        }
-
-        // Developer demo functions
-        function showDeveloperDemo() {
-            showNotification('Loading API documentation and code examples...');
-            setTimeout(() => {
-                showNotification('Developer resources: REST API, GraphQL, WebSocket real-time updates available');
-            }, 2000);
-        }
-
-        function showAgentDemo() {
-            showNotification('Welcome to the agent dashboard! Explore properties, leads, and analytics.');
-        }
-
-        function showAPICode() {
-            const code = `
-// SpaceMatch API Example
-const response = await fetch('https://api.spacematch.in/v1/properties/search', {
-  method: 'POST',
-  headers: {
-    'Authorization': 'Bearer YOUR_API_KEY',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    location: 'Gurgaon',
-    size_min: 2000,
-    size_max: 5000,
-    budget_max: 300000,
-    property_type: 'traditional'
-  })
-});
-
-const properties = await response.json();
-console.log('AI-matched properties:', properties);`;
-            
-            navigator.clipboard.writeText(code);
-            showNotification('API code example copied to clipboard!');
-        }
-
-        function saveSearch() {
-            showNotification('Search preferences saved to your profile');
-        }
-
-        function exportLeads() {
-            showNotification('Leads exported to CSV format');
-        }
-
-        function bulkAction() {
-            showNotification('Bulk action tools: Mass email, status update, assignment available');
-        }
-
-        // Notification system
-        function showNotification(message) {
-            const notification = document.getElementById('notification');
-            notification.innerHTML = `<strong><i class="fas fa-bolt"></i> SpaceMatch:</strong> ${message}`;
-            notification.style.display = 'block';
-            
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 4000);
-        }
-
-        // Real-time updates simulation
-        function simulateRealTimeUpdates() {
-            const updates = [
-                'New property added in Cyber City',
-                'Lead responded to your message',
-                'Property visit scheduled confirmed',
-                'Commission payment processed',
-                'New API integration completed',
-                'Market trends updated for Gurgaon',
-                'Agent tier upgraded to Platinum',
-                'Document verification completed'
-            ];
-            
-            setInterval(() => {
-                if (Math.random() > 0.7) {
-                    const randomUpdate = updates[Math.floor(Math.random() * updates.length)];
-                    showNotification(randomUpdate);
-                }
-            }, 15000);
-        }
-
-        // Initialize app
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                showNotification('Welcome to SpaceMatch! Your dashboard is ready.');
-            }, 1000);
-            
-            simulateRealTimeUpdates();
-            
-            // Animate elements on scroll
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.animation = 'slideIn 0.6s ease forwards';
+        // Revenue Chart
+        const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+        new Chart(revenueCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Revenue (₹ Lakhs)',
+                    data: [12, 19, 25, 32, 28, 35],
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
                     }
-                });
-            }, { threshold: 0.1 });
-            
-            document.querySelectorAll('.property-card, .lead-card, .metric-card').forEach(el => {
-                observer.observe(el);
-            });
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
         });
 
-        // Enhanced hover effects
-        document.querySelectorAll('.property-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.borderColor = '#8b5cf6';
-                this.style.boxShadow = '0 12px 30px rgba(139, 92, 246, 0.2)';
+        // Property Chart
+        const propertyCtx = document.getElementById('propertyChart').getContext('2d');
+        new Chart(propertyCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Traditional Commercial', 'Co-working', 'Independent Offices'],
+                datasets: [{
+                    data: [60, 25, 15],
+                    backgroundColor: ['#3b82f6', '#10b981', '#8b5cf6'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
+        // Add interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to cards
+            const cards = document.querySelectorAll('.dashboard-card, .swipe-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
             });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.borderColor = 'rgba(248, 250, 252, 0.08)';
-                this.style.boxShadow = '';
+
+            // Add click effects to buttons
+            const buttons = document.querySelectorAll('.btn-primary');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
             });
         });
     </script>
